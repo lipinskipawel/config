@@ -1,0 +1,21 @@
+# IDE's
+# Intellij idea
+.idea/
+*.iml
+
+# vim
+.vim
+
+# Build tools
+# Maven
+target/
+
+# Python
+venv/
+*.pyc
+
+# javascript
+/node_modules
+node_modules/
+.eslintcache
+
