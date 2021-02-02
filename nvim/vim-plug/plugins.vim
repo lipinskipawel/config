@@ -4,7 +4,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'sheerun/vim-polyglot'
 
     " This will cause vim to look at the root of git project
-     Plug 'airblade/vim-rooter'
+    Plug 'airblade/vim-rooter'
+
+    " FZF
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 
     " GUI enhancements
     Plug 'itchyny/lightline.vim'
