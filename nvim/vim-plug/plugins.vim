@@ -10,6 +10,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
+    " Completion
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
     " GUI enhancements
     Plug 'itchyny/lightline.vim'
 
