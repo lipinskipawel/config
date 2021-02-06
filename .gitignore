@@ -1,0 +1,3 @@
+# ignore all downlaod vim plug repositories
+nvim/autoload/plugged
+
