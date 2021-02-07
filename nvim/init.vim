@@ -6,3 +6,4 @@ source $HOME/.config/nvim/plug-config/coc.vim
 
 " source custom vim config
 source $HOME/.config/nvim/sets.vim
+source $HOME/.config/nvim/mappings.vim
