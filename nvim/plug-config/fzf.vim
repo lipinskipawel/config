@@ -1,5 +1,7 @@
-" <leader>s for Rg search
 noremap <leader>s :Rg<CR>
+noremap <leader>g :GFiles<CR>
+map <leader>f :FZF<CR>
+nmap <leader>; :Buffers<CR>
 
 let g:fzf_layout = { 'down': '~20%' }
 command! -bang -nargs=* Rg
