@@ -19,3 +19,5 @@ set nowrap
 " start scrolling when you are close to bottom
 set scrolloff=8
 
+map H ^
+map L $
