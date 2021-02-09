@@ -1,6 +1,9 @@
 " <leader> <leader> switches between buffers
 nnoremap <leader><leader> <c-^>
 
+" quick-save
+nmap <leader>w :w<CR>
+
 " No arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
