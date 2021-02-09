@@ -21,3 +21,7 @@ set scrolloff=8
 
 map H ^
 map L $
+
+" Permament undo
+set undodir=~/.config/nvim/.vimdid
+set undofile
