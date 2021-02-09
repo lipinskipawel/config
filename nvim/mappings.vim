@@ -4,6 +4,9 @@ nnoremap <leader><leader> <c-^>
 " quick-save
 nmap <leader>w :w<CR>
 
+" save and reload vim
+nnoremap <leader>rv :w \| :source $MYVIMRC<CR>
+
 " No arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
