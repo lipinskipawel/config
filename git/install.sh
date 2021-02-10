@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cp .gitconfig ~/.gitconfig
-cp .gitignore ~/.gitignore
-
+cd ..
+ln -sr git/.gitconfig ~/.gitconfig
+ln -sr git/.gitignore ~/.gitignore
