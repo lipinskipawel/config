@@ -16,5 +16,6 @@
 	cp = cherry-pick
 	tree = log --graph --decorate --pretty=oneline --abbrev-commit
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	ca = commit --amend
 [pager]
 	branch = false
