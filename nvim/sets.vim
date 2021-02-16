@@ -7,6 +7,10 @@ se mouse+=a
 " on highlight on search
 set nohlsearch
 
+" set indent as a fold and don't fold by default
+set foldmethod=indent
+set foldlevelstart=99
+
 " keeps buffer in the background
 set hidden
 
