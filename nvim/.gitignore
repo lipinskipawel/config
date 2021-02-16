@@ -1,3 +1,4 @@
 # ignore all downlaod vim plug repositories
 autoload/plugged
 
+.netrwhist
