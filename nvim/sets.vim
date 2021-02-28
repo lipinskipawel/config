@@ -4,6 +4,9 @@ set number
 " in case of copying from vim to...
 se mouse+=a
 
+" Stop newline continuation of comments
+set formatoptions-=cro
+
 " on highlight on search
 set nohlsearch
 
