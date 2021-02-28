@@ -4,6 +4,9 @@ nnoremap <leader><leader> <c-^>
 " quick-save
 nmap <leader>w :w<CR>
 
+" replacing highlighted text with the text from implicit register
+vnoremap <leader>p "_dP
+
 " save and reload vim
 nnoremap <leader>rv :w \| :source $MYVIMRC<CR>
 
