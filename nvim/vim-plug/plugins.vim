@@ -24,5 +24,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " GUI enhancements
     Plug 'itchyny/lightline.vim'
 
+    " Theme
+    Plug 'gruvbox-community/gruvbox'
+
 call plug#end()
 
