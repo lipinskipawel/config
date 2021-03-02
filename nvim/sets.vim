@@ -1,6 +1,9 @@
 set relativenumber
 set number
 
+" make cursor to be always block, even in insert mode
+set guicursor=
+
 " in case of copying from vim to...
 se mouse+=a
 
