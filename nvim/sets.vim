@@ -4,9 +4,6 @@ set number
 " make cursor to be always block, even in insert mode
 set guicursor=
 
-" in case of copying from vim to...
-se mouse+=a
-
 " Stop newline continuation of comments
 set formatoptions-=cro
 
