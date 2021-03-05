@@ -29,6 +29,9 @@ set nowrap
 " start scrolling when you are close to bottom
 set scrolloff=8
 
+" share system clipboard with vim
+set clipboard=unnamedplus
+
 map H ^
 map L $
 
