@@ -1,6 +1,9 @@
 " <leader> <leader> switches between buffers
 nnoremap <leader><leader> <c-^>
 
+" find and replace highlighted text - substitute
+vnoremap <leader>re "hy:%s/<C-r>h//gc<left><left><left>
+
 " quick-save
 nmap <leader>w :w<CR>
 
@@ -18,6 +21,6 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-" switch between buffers using arros
+" switch between buffers using arrows
 nnoremap <left> :bp<CR>
 nnoremap <right> :bn<CR>
