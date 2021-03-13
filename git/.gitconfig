@@ -1,6 +1,7 @@
 [user]
 	name = Pawel Lipinski
 	email = lipinskijob@gmail.com
+	signingkey = 6E2FAE9852F6377B594E7FFD580A8D46C12A06D1
 [diff]
 	tool = vimdiff
 [difftool]
@@ -19,3 +20,5 @@
 	ca = commit --amend
 [pager]
 	branch = false
+[commit]
+	gpgsign = true
