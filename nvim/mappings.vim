@@ -4,6 +4,9 @@ nnoremap <leader><leader> <c-^>
 " find and replace highlighted text - substitute
 vnoremap <leader>re "hy:%s/<C-r>h//gc<left><left><left>
 
+" find and replace highlighted word/word's
+vnoremap <leader>rw "hy:%s/\<<C-r>h\>//gc<left><left><left>
+
 " quick-save
 nmap <leader>w :w<CR>
 
