@@ -1,6 +1,9 @@
 " <leader> <leader> switches between buffers
 nnoremap <leader><leader> <c-^>
 
+" remove current file from buffer
+nnoremap <leader>b :bdelete<CR>
+
 " find and replace highlighted text - substitute
 vnoremap <leader>re "hy:%s/<C-r>h//gc<left><left><left>
 
