@@ -1,0 +1,22 @@
+# COMMNADS
+# tmux list-sessions
+
+# tmux new-session -s hello
+# tmux a -t "<session-id>:<window-id>"
+# tmux switch-client -t "<session-id"
+
+# tmux kill-session -t "hello"
+# tmux kill-server
+
+
+# prefix [ --> enter copy tmux mode
+# prefix , --> rename current window
+# prefix % --> new vertical pane
+# prefix " --> new pane
+
+# prefix d --> detached from session
+# prefix c --> create a new window
+# prefix w --> switch between sessions and windows
+# perfix : --> command prompt | type "split-window"
+# prefix ( --> cycle through the sessions
+# prefix ) --> cycle through the sessions backwards
