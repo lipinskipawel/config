@@ -11,7 +11,7 @@ vnoremap <leader>re "hy:%s/<C-r>h//gc<left><left><left>
 vnoremap <leader>rw "hy:%s/\<<C-r>h\>//gc<left><left><left>
 
 " quick-save
-nmap <leader>w :w<CR>
+nmap <leader>w :w!<CR>
 
 " replacing highlighted text with the text from implicit register
 vnoremap <leader>p "_dP
