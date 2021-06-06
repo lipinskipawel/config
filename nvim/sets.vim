@@ -38,3 +38,12 @@ map L $
 " Permament undo
 set undodir=~/.config/nvim/.vimdid
 set undofile
+
+" Rust
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+let g:rust_clip_command = 'xclip -selection clipboard'
+
+au Filetype rust source ~/.config/nvim/scripts/spacetab.vim
+au Filetype rust set colorcolumn=100
