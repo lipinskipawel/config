@@ -8,6 +8,7 @@ let g:coc_global_extensions = [
   \ 'coc-json', 
   \ 'coc-rls', 
   \ 'coc-rust-analyzer', 
+  \ 'coc-markdownlint',
   \ ]
 
 " TextEdit might fail if hidden is not set.
