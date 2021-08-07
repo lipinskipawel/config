@@ -1,0 +1,12 @@
+export HISTSIZE=1000000
+
+setopt SHARE_HISTORY                     # Share history between all sessions.
+setopt hist_ignore_all_dups              # Prevent history from recording duplicates.
+setopt hist_ignore_space                 # Prevent recording entries preceded by a  space.
+setopt HIST_SAVE_NO_DUPS                 # Don't write duplicate entries in the history file.
+setopt HIST_EXPIRE_DUPS_FIRST            # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS                  # Don't record an entry that was just recorded again.
+
+# Prevent recording entries with the following strings
+# Those entries will not be stored in the .zsh_history file
+export HISTORY_IGNORE="(cat|AWS|SECRET)"
