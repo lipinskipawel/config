@@ -30,3 +30,10 @@ inoremap <right> <nop>
 " switch between buffers using arrows
 nnoremap <left> :bp<CR>
 nnoremap <right> :bn<CR>
+
+" Keep cursor at the center of screen while finding next element
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" when moving lines up, your cursor stays in the same spot
+nnoremap J mzJ`z
