@@ -37,3 +37,6 @@ nnoremap N Nzzzv
 
 " when moving lines up, your cursor stays in the same spot
 nnoremap J mzJ`z
+
+" vim will treat Y the same way as C and D
+nnoremap Y y$
