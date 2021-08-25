@@ -32,6 +32,7 @@ target/
 ### Python ###
 venv/
 *.pyc
+.python-version
 
 ### Javascript ###
 /node_modules
