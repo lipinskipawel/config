@@ -1,0 +1,28 @@
+# COMMANDS
+
+# u      --> undo change
+# Ctrl+r --> redo the change
+
+# Ctrl+o --> jumps throught the "jump list" forwards
+# Ctrl+i --> jumps throught the "jump list" backwards
+
+# Ctrl+v --> highligts the text. Combine this with I+Esc to have multi cursor
+
+# za --> to fold/unfold the text
+# zz --> center the view vertically
+# zt --> move view up
+# zb --> move view down
+
+# ZZ --> quits vim
+
+# x --> remove one character and stays in normal mode
+# . --> repeats previous sequence of "commands"
+# 0 --> move cursor at the beggining of line
+
+# w   --> move by one word forwards
+# b   --> move by one word backwards
+# dw  --> delete a word
+# cw  --> delete a word and change mode to insert
+# ci" --> deletes text inside " and change mode to insert
+# da' --> deletes text around '
+# dt) --> deletes text until )
