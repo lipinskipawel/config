@@ -21,6 +21,7 @@
 
 # w   --> move by one word forwards
 # b   --> move by one word backwards
+# %   --> move cursor to the next matching (closing, starting) bracket
 # dw  --> delete a word
 # cw  --> delete a word and change mode to insert
 # ci" --> deletes text inside " and change mode to insert
