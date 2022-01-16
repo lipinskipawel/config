@@ -19,6 +19,7 @@
 # . --> repeats previous sequence of "commands"
 # 0 --> move cursor at the beggining of line
 
+# f"  --> move cursor to the nearest "
 # w   --> move by one word forwards
 # b   --> move by one word backwards
 # %   --> move cursor to the next matching (closing, starting) bracket
@@ -27,3 +28,4 @@
 # ci" --> deletes text inside " and change mode to insert
 # da' --> deletes text around '
 # dt) --> deletes text until )
+# =i{ --> formats text inside {
