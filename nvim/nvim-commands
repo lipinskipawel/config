@@ -29,3 +29,6 @@
 # da' --> deletes text around '
 # dt) --> deletes text until )
 # =i{ --> formats text inside {
+
+# :Lexplore  --> will open directory explorer
+# :messages  --> will allow you to go through all messages
