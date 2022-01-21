@@ -1,6 +1,2 @@
-# ignore all downlaod vim plug repositories
-autoload/plugged
-
-.netrwhist
-
+# ignore packer_compiled file
 plugin/packer_compiled.lua
