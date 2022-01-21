@@ -108,6 +108,8 @@ cmp.setup {
       vim_item.menu = ({
         -- those are the names next to the completion option.
         -- those names come from the sources like: hrsh7th/cmp-buffer
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[NVIM_LUA]",
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
@@ -117,6 +119,8 @@ cmp.setup {
   },
   -- this will show up completion options respecting the specified order
   sources = {
+    { name = "nvim_lsp" },
+    { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
