@@ -47,6 +47,7 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use "morhetz/gruvbox"
+  use "itchyny/lightline.vim"
 
   -- completion plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin

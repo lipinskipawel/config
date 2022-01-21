@@ -18,7 +18,6 @@ local options = {
   tabstop = 2,                             -- insert 2 spaces for a tab
   shiftwidth = 2,                          -- the number of spaces inserted for each indentation
   smartindent = true,                      -- make indenting smarter again
-  showtabline = 2,                         -- always show tabs
   foldmethod = "indent",                   -- set indent as fold
   foldlevelstart = 99,                     -- no fold by default
   hidden = true,                           -- keeps buffer in the background
@@ -38,7 +37,6 @@ local options = {
   pumheight = 10,                          -- pop up menu height
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   cursorline = false,                      -- highlight the current line
-  showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
 }
 
 vim.opt.shortmess:append "c"
