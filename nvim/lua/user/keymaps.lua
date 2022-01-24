@@ -27,6 +27,9 @@ keymap("v", "<leader>re", "hy:%s/<C-r>h//gc<left><left><left>", opts)
 -- find and replace highlighted word/word's
 keymap("v", "<leader>rw", "hy:%s/\\<<C-r>h\\>//gc<left><left><left>", opts)
 
+keymap("n", "<leader>g", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_ivy({}))<cr>", opts)
+keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_ivy({}))<cr>", opts)
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
