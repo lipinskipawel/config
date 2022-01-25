@@ -20,7 +20,7 @@ keymap("v", "<leader>p", '"_dP', opts)
 -- closes current buffer
 keymap("n", "<leader>b", ":bdelete<CR>", opts)
 -- quick save
-keymap("n","<leader>w", ":w!<CR>", { noremap = false, silent = true})
+keymap("n", "<leader>w", ":w!<CR>", { noremap = false, silent = true })
 
 -- find and replace highlighted text - substitute
 keymap("v", "<leader>re", "hy:%s/<C-r>h//gc<left><left><left>", opts)
