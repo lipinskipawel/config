@@ -84,6 +84,9 @@ keymap("n", "J", "mzJ`z", opts)
 -- vim will treat Y the same way as C and D
 keymap("n", "Y", "y$", opts)
 
+-- use escape to close quickfix
+keymap("n", "<Esc>", ":cclose<CR>", opts)
+
 -- No arrow keys
 keymap("n", "<Up>", "<Nop>", opts)
 keymap("n", "<down>", "<Nop>", opts)
