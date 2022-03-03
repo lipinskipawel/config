@@ -11,8 +11,8 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
 	debug = false,
 	sources = {
-		-- npm install -g --save-dev --save-exact eslint_d
-		formatting.eslint_d,
+		-- npm install -g --save-dev --save-exact @fsouza/prettierd
+		formatting.prettierd,
 		-- cargo install stylua
 		formatting.stylua,
 		diagnostics.eslint_d,
