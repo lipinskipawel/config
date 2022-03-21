@@ -1,1 +1,2 @@
 pacman -S tmux alacritty ffmeg git firefox
+pacman -S dmenu
