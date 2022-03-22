@@ -17,68 +17,31 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+require("main.error-handling")
 
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
-end
+RC = {} -- global namespace, on top before require any modules
+RC.vars = require("main.user-variables")
 
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal("debug::error", function (err)
-        -- Make sure we don't go into an endless error loop
-        if in_error then return end
-        in_error = true
+-- Custom Local Library
+local main = {
+  layouts = require("main.layouts"),
+  tags = require("main.tags"),
+}
 
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = tostring(err) })
-        in_error = false
-    end)
-end
--- }}}
+-- Layouts
+RC.layouts = main.layouts()
+-- Tags
+RC.tags = main.tags()
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
--- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
+terminal = RC.vars.terminal
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
-
--- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
-}
--- }}}
+modkey = RC.vars.modkey
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -167,9 +130,6 @@ screen.connect_signal("property::geometry", set_wallpaper)
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
-
-    -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
