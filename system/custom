@@ -2,3 +2,10 @@ pacman -S tmux alacritty ffmpeg git firefox
 pacman -S dmenu
 pacman -S curl wget unzip
 pacman -S mupdf
+
+pacman -S man-db man-pages
+
+# audio
+pacman -S pulseaudio
+pacman -S pulseaudio-alsa
+pacman -S pavucontrol
