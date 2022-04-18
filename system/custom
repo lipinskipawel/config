@@ -9,3 +9,5 @@ pacman -S man-db man-pages
 pacman -S pulseaudio
 pacman -S pulseaudio-alsa
 pacman -S pavucontrol
+
+pacman -S fish
