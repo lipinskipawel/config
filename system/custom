@@ -3,7 +3,7 @@ pacman -S dmenu
 pacman -S curl wget unzip
 pacman -S mupdf
 
-pacman -S man-db man-pages
+pacman -S man-db man-pages tldr
 
 # audio
 pacman -S pulseaudio
@@ -11,3 +11,7 @@ pacman -S pulseaudio-alsa
 pacman -S pavucontrol
 
 pacman -S fish
+
+pacman -S fd
+pacman -S ripgrep
+pacman -S fzf
