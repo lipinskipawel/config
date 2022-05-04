@@ -15,3 +15,10 @@ pacman -S fish
 pacman -S fd
 pacman -S ripgrep
 pacman -S fzf
+
+# paru
+git clone https://github.com/Morganamilo/paru
+cd paru
+makepkg -si
+cd ..
+./paru.sh
