@@ -306,7 +306,17 @@ globalkeys = gears.table.join(
 	-- Menubar
 	awful.key({ modkey }, "p", function()
 		menubar.show()
-	end, { description = "show the menubar", group = "launcher" })
+	end, { description = "show the menubar", group = "launcher" }),
+
+	-- Brightness
+	awful.key({ modkey }, "i", function()
+		awful.util.spawn("brillo -q -U 5")
+	end, { description = "dim display", group = "z" }),
+	awful.key({ modkey }, "o", function()
+		awful.util.spawn("brillo -q -A 5")
+	end, { description = "brighten display", group = "z" })
+	-- XF86MonBrightnessDown XF86MonBrightnessUp
+	-- end of Brightness
 )
 
 clientkeys = gears.table.join(
