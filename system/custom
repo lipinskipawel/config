@@ -22,3 +22,5 @@ cd paru
 makepkg -si
 cd ..
 ./paru.sh
+
+pacman -S alsa-utils

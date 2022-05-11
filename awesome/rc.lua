@@ -337,9 +337,24 @@ globalkeys = gears.table.join(
   end, { description = "dim display", group = "z" }),
   awful.key({ modkey }, "o", function()
     awful.util.spawn("brillo -q -A 5")
-  end, { description = "brighten display", group = "z" })
--- XF86MonBrightnessDown XF86MonBrightnessUp
--- end of Brightness
+  end, { description = "brighten display", group = "z" }),
+  -- XF86MonBrightnessDown XF86MonBrightnessUp
+  -- end of Brightness
+
+  -- volume
+  awful.key({ modkey }, "]", function()
+    awful.util.spawn("amixer -D pulse sset Master 5%+")
+    -- volume_widget:inc(5)
+  end),
+  awful.key({ modkey }, "[", function()
+    awful.util.spawn("amixer -D pulse sset Master 5%-")
+    -- volume_widget:dec(5)
+  end),
+  awful.key({ modkey }, "\\", function()
+    awful.util.spawn("amixer -D pulse sset Master toggle")
+    -- volume_widget:toggle()
+  end)
+-- end of volume
 )
 
 clientkeys = gears.table.join(
