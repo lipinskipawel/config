@@ -8,6 +8,7 @@ pacman -S man-db man-pages tldr
 # audio
 pacman -S pulseaudio
 pacman -S pulseaudio-alsa
+pacman -S alsa-utils
 pacman -S pavucontrol
 
 pacman -S fish
@@ -23,4 +24,4 @@ makepkg -si
 cd ..
 ./paru.sh
 
-pacman -S alsa-utils
+pacman -S clang
