@@ -27,3 +27,6 @@ cd ..
 ./paru.sh
 
 pacman --noconfirm -S clang
+
+# allows to use aft-mtp-mount /mnt and fusermount -u /mnt
+pacman --noconfirm -S android-file-transfer
