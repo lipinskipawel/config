@@ -1,8 +1,0 @@
-# install xorg
-pacman -S xorg-server xorg-apps xorg-xinit
-pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-systemctl enable lightdm.service
-
-pacman -S awesome
-# add .xinitrc file and write "exec awesome"
-
