@@ -27,5 +27,24 @@ docker() {
   echo "sudo rm -rf /var/lib/containerd"
 }
 
+java() {
+  echo "Download java"
+  echo "To install java use fish functions like jls, jdk"
+  curl -fsSL \
+    https://api.temurin.net/v3/binary/latest/17/ga/linux/x64/jdk/hotspot/normal/eclipse?project=jdk \
+    --output temurin-17.0.4.tar.gz
+
+  mkdir -p temurin-17.0.4
+
+  echo "Extract archive"
+  tar xf temurin-17.0.4.tar.gz -C temurin-17.0.4 --strip-components=1
+  mkdir -p $HOME/.jdks
+  mv temurin-17.0.4 $HOME/.jdks/
+
+  echo "Removing archive"
+  rm -rf temurin-17.0.4.tar.gz
+}
+
 docker
+java
 
