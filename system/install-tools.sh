@@ -45,6 +45,15 @@ java() {
   rm -rf temurin-17.0.4.tar.gz
 }
 
+rust() {
+  echo "Install rust"
+  curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs --output rust-install.sh
+  chmod +x rust-install.sh
+  ./rust-install.sh -y --no-modify-path
+  rm -rf rust-install.sh
+}
+
 docker
 java
+rust
 
