@@ -53,7 +53,21 @@ rust() {
   rm -rf rust-install.sh
 }
 
+gradle() {
+  echo "Install gradle"
+  curl --proto '=https' -tlsv1.2 -fsSL "https://services.gradle.org/distributions/gradle-7.5.1-all.zip" \
+    --output gradle-7.5.1-all.zip
+
+  unzip gradle-7.5.1-all.zip
+  mv gradle-7.5.1 /home/pawel/.tools
+
+  rm -rf gradle-7.5.1-all.zip
+  chmod +x /home/pawel/.tools/gradle-7.5.1/bin/gradle
+  ln -s /home/pawel/.tools/gradle-7.5.1/bin/gradle /home/pawel/.local/bin/gradle
+}
+
 docker
 java
 rust
+gradle
 
