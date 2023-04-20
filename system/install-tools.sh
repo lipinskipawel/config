@@ -66,8 +66,22 @@ gradle() {
   ln -s /home/pawel/.tools/gradle-7.5.1/bin/gradle /home/pawel/.local/bin/gradle
 }
 
+idea() {
+  echo "Install Intellij Idea"
+  curl --proto '=https' -tlsv1.2 -fsSL "https://download.jetbrains.com/idea/ideaIC-2021.3.3-no-jbr.tar.gz" \
+    --output idea-2021.3.3-no-jbr.tar.gz
+
+  tar xf idea-2021.3.3-no-jbr.tar.gz -C idea-2021.3.3 --strip-components=1
+  mv idea-2021.3.3 /home/pawel/.tools/idea-2021.3.3
+
+  rm -rf idea-2021.3.3-no-jbr.tar.gz
+  chmod +x /home/pawel/.tools/idea-2021.3.3/bin/idea.sh
+  ln -s /home/pawel/.tools/idea-2021.3.3/bin/idea.sh /home/pawel/.local/idea
+}
+
 docker
 java
 rust
 gradle
+idea
 
