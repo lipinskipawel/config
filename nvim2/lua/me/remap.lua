@@ -8,8 +8,9 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- Leader mappings
 vim.keymap.set("n", "<leader><leader>", "<C-^>")
-vim.keymap.set("n", "<leader>w", ":w!<CR>", { noremap = false, silent = true })
-vim.keymap.set("n", "<leader>e", ":Lex 30<cr>")
+vim.keymap.set("n", "<leader>ww", ":w!<CR>")
+vim.keymap.set("n", "<leader>wa", ":wa!<CR>") -- write for all buffers
+vim.keymap.set("n", "<leader>e", ":Lex 30<CR>")
 
 vim.keymap.set("v", "p", '"_dP')
 vim.keymap.set("v", "<leader>p", '\"_dP')

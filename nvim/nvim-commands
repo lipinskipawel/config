@@ -4,8 +4,19 @@
 # u      --> undo change
 # Ctrl+r --> redo the change
 
-# Ctrl+o --> jumps throught the "jump list" forwards
-# Ctrl+i --> jumps throught the "jump list" backwards
+# Ctrl+o --> jumps throught the "jump list" backwards
+# Ctrl+i --> jumps throught the "jump list" forwards
+# Ctrl+t --> tagstack
+#
+# Tagstack is a different idea than jump list
+# Jump list is based on movements
+# Tagstack is based on go to definition. It is useful when you are done
+# exploring the file and want to go back to where you were before gd.
+#
+# vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<CR>",{buffer=0})
+# and then
+#
+# Ctrl+q --> moves all of them to quick fix list
 
 # Ctrl+v --> highligts the text. Combine this with I+Esc to have multi cursor
 

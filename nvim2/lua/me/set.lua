@@ -33,6 +33,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+vim.opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete
+-- this is probably overriden by my WhichKey plugin
 
 vim.opt.colorcolumn = "80"
 
