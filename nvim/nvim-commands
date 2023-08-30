@@ -19,6 +19,8 @@
 # Ctrl+q --> moves all of them to quick fix list
 
 # Ctrl+v --> highligts the text. Combine this with I+Esc to have multi cursor
+# Ctrl+e --> move screen down without moving cursor
+# Ctrl+y --> move screen up without moving cursor
 
 # za --> to fold/unfold the text
 # zz --> center the view vertically
