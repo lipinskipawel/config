@@ -1,2 +1,3 @@
-require("me")
+require("me.config")
+require("me.lazy")
 
