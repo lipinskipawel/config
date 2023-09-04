@@ -7,6 +7,10 @@ abbr -a j8 'sudo archlinux-java set java-8-openjdk'
 abbr -a j11 'sudo archlinux-java set java-11-openjdk'
 abbr -a j17 'sudo archlinux-java set java-17-openjdk'
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
 if status is-interactive
   # Commands to run in interactive sessions can go here
   # add rust toolchain to path, universal, to the front by default
