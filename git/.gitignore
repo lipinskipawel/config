@@ -12,7 +12,7 @@
 .gradle
 **/build/
 !src/**/build/
-gradle/
+gradle/wrapper
 gradlew
 gradlew.bat
 # Ignore Gradle GUI config
