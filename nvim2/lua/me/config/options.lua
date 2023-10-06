@@ -4,7 +4,7 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 
 -- not needed since I'm using <leader>y remap
--- vim.opt.clipboard = "unnamedplus" -- allows access the system clipboard
+vim.opt.clipboard = "unnamedplus" -- allows access the system clipboard
 
 vim.opt.tabstop = 2 -- insert 2 spaces for a tab
 vim.opt.softtabstop = 2 -- not sure what is does
