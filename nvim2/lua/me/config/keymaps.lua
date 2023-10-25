@@ -13,8 +13,8 @@ vim.keymap.set("n", "<leader>wa", ":wa!<CR>") -- write for all buffers
 vim.keymap.set("n", "<leader>e", ":Lex 30<CR>")
 
 vim.keymap.set("v", "p", '"_dP')
-vim.keymap.set("v", "<leader>p", '\"_dP')
-vim.keymap.set({"n", "v"}, "<leader>d", '\"_d') -- deleting void register
+vim.keymap.set("v", "<leader>p", '"_dP')
+vim.keymap.set({ "n", "v" }, "<leader>d", '"_d') -- deleting void register
 
 vim.keymap.set("n", "Y", "y$")
 
@@ -39,7 +39,11 @@ vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- replace word that the cursor is on
-vim.keymap.set("n", "<leader>rs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set(
+    "n",
+    "<leader>rs",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+)
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- quick fix list navigation
@@ -51,7 +55,7 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<Esc>", ":cclose<CR>", opts)
 
 vim.keymap.set("n", "so", function()
-  vim.cmd("so")
+    vim.cmd("so")
 end)
 
 -- Modes
@@ -61,10 +65,6 @@ end)
 --   "x" -- visual_block_mode, used for snippets
 --   "t" -- term_mode
 --   "c" -- command_mode
-
-
-
-
 
 -- closes current buffer
 vim.keymap.set("n", "<leader>b", ":bdelete<CR>")
@@ -93,4 +93,3 @@ vim.keymap.set("n", "<Up>", "<Nop>", opts)
 vim.keymap.set("n", "<Down>", "<Nop>", opts)
 vim.keymap.set("n", "<Left>", "<Nop>", opts)
 vim.keymap.set("n", "<Right>", "<Nop>", opts)
-

@@ -42,4 +42,3 @@ vim.opt.termguicolors = true
 vim.opt.fileencoding = "utf-8"
 vim.opt.mouse = "a"
 vim.opt.errorbells = false
-
