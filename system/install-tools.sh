@@ -55,28 +55,28 @@ rust() {
 
 gradle() {
   echo "Install gradle"
-  curl --proto '=https' -tlsv1.2 -fsSL "https://services.gradle.org/distributions/gradle-7.5.1-all.zip" \
-    --output gradle-7.5.1-all.zip
+  curl --proto '=https' -tlsv1.2 -fsSL "https://services.gradle.org/distributions/gradle-7.4.2-all.zip" \
+    --output gradle-7.4.2-all.zip
 
-  unzip gradle-7.5.1-all.zip
-  mv gradle-7.5.1 /home/pawel/.tools
+  unzip gradle-7.4.2-all.zip
+  mv gradle-7.4.2 /home/pawel/.tools
 
-  rm -rf gradle-7.5.1-all.zip
-  chmod +x /home/pawel/.tools/gradle-7.5.1/bin/gradle
-  ln -s /home/pawel/.tools/gradle-7.5.1/bin/gradle /home/pawel/.local/bin/gradle
+  rm -rf gradle-7.4.2-all.zip
+  chmod +x /home/pawel/.tools/gradle-7.4.2/bin/gradle
+  ln -s /home/pawel/.tools/gradle-7.4.2/bin/gradle /home/pawel/.local/bin/gradle
 }
 
 idea() {
   echo "Install Intellij Idea"
-  curl --proto '=https' -tlsv1.2 -fsSL "https://download.jetbrains.com/idea/ideaIC-2021.3.3-no-jbr.tar.gz" \
-    --output idea-2021.3.3-no-jbr.tar.gz
+  curl --proto '=https' -tlsv1.2 -fsSL "https://download.jetbrains.com/idea/ideaIC-2023.2.4.tar.gz" \
+    --output idea-2023.2.4.tar.gz
 
-  tar xf idea-2021.3.3-no-jbr.tar.gz -C idea-2021.3.3 --strip-components=1
-  mv idea-2021.3.3 /home/pawel/.tools/idea-2021.3.3
+  tar xf idea-2023.2.4.tar.gz -C idea-2023.2.4 --strip-components=1
+  mv idea-2023.2.4 /home/pawel/.tools/idea-2023.2.4
 
-  rm -rf idea-2021.3.3-no-jbr.tar.gz
-  chmod +x /home/pawel/.tools/idea-2021.3.3/bin/idea.sh
-  ln -s /home/pawel/.tools/idea-2021.3.3/bin/idea.sh /home/pawel/.local/idea
+  rm -rf idea-2023.2.4.tar.gz
+  chmod +x /home/pawel/.tools/idea-2023.2.4/bin/idea.sh
+  ln -s /home/pawel/.tools/idea-2023.2.4/bin/idea.sh /home/pawel/.local/bin/idea
 }
 
 docker
