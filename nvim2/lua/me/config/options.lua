@@ -6,11 +6,11 @@ vim.opt.relativenumber = true
 -- not needed since I'm using <leader>y remap
 vim.opt.clipboard = "unnamedplus" -- allows access the system clipboard
 
--- vim.opt.tabstop = 4 -- insert 4 spaces for a tab
--- vim.opt.softtabstop = 4 -- not sure what is does
 -- vim.opt.shiftwidth = 4 -- number of spaces inserted for each indentation
+-- vim.opt.tabstop = 4 -- insert 4 spaces for a tab
 -- vim.opt.expandtab = true -- converts tab to spaces
--- vim.opt.smartindent = true
+vim.opt.softtabstop = 4 -- not sure what is does
+vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
