@@ -10,10 +10,10 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 c = { "clang_format" },
+                javascript = { { "prettierd", "prettier" } },
                 -- Conform will run multiple formatters sequentially
                 -- python = { "isort", "black" },
                 -- Use a sub-list to run only the first available formatter
-                -- javascript = { { "prettierd", "prettier" } },
             },
         })
         -- Then you can use conform.format() just like you would

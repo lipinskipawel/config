@@ -15,13 +15,14 @@ return {
     },
     config = function()
         -- Setup neovim lua configuration
+        -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
         require("neodev").setup()
         local servers = {
             clangd = {},
+            tsserver = {},
             -- gopls = {},
             -- pyright = {},
             -- rust_analyzer = {},
-            -- tsserver = {},
             -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
             lua_ls = {
