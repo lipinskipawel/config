@@ -17,6 +17,8 @@ vim.keymap.set("v", "<leader>p", '"_dP')
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d') -- deleting void register
 
 vim.keymap.set("n", "Y", "y$")
+vim.keymap.set("n", "L", "<Nop>")
+vim.keymap.set("n", "L", "$")
 
 -- send copy to plus register which is also system register
 -- vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])

@@ -66,4 +66,6 @@
 # :messages             --> will allow you to go through all messages
 # :LspInstallInfo       --> information about installed servers. press 'i' to install, 'u' to update, 'X' to uninstall
 # :LspInfo              --> opens information about which lsp client is 'active' on a file you entered the command
+#
+# :nmap                 --> opens all keymaps
 
