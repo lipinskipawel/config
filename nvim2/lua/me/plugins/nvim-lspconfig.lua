@@ -17,7 +17,7 @@ return {
         -- Setup neovim lua configuration
         require("neodev").setup()
         local servers = {
-            -- clangd = {},
+            clangd = {},
             -- gopls = {},
             -- pyright = {},
             -- rust_analyzer = {},
