@@ -88,6 +88,9 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 vim.keymap.set("n", "Right", ":bnext<CR>", opts)
 vim.keymap.set("n", "Left", ":bprevious<CR>", opts)
 
+-- shows/hides hidden characters
+vim.keymap.set("n", "<leader>,", ":set invlist<CR>", opts)
+
 -- No arrow keys
 vim.keymap.set("n", "<Up>", "<Nop>", opts)
 vim.keymap.set("n", "<down>", "<Nop>", opts)

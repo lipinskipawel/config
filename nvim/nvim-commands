@@ -1,8 +1,21 @@
 # COMMANDS
 
 # normal mode
-# u      --> undo change
-# Ctrl+r --> redo the change
+# u               --> undo change
+# U               --> undo changes in a line
+# f               --> find next character
+# F               --> find next character backwards
+# ;               --> jump to next (forwards) in 'that' list from 'f'
+# ,               --> jump to previous (backwards) in 'that' list from 'f'
+# v               --> start visual mode
+# V               --> start visual mode for the entire line
+# Ctrl+r          --> redo the change
+# }               --> jumps by a paragraph, forwards (down)
+# {               --> jumps by a paragraph, backwards (up)
+# Ctrl+a          --> increment a number under the cursor or the first occurance
+# Ctrl+x          --> decrement a number under the cursor or the first occurance
+# Ctrl+vkkgCtrl+a --> increment all accordingly. from 0,0,0 to 1,2,3
+# 3Ctrl+a         --> add 3 to the current number or the next one
 
 # Ctrl+o --> jumps throught the "jump list" backwards
 # Ctrl+i --> jumps throught the "jump list" forwards
@@ -37,18 +50,29 @@
 # ap  --> around paragraph
 # Y   --> yank current line, synonim of yy
 # f"  --> move cursor to the nearest "
-# w   --> move by one word forwards
+# e   --> move by one work forwards to the end of the word
+# w   --> move by one word forwards. words is letters and underscores
+# W   --> move by one word forwards. words is separated by the space
 # b   --> move by one word backwards
-# %   --> move cursor to the next matching (closing, starting) bracket
+# %   --> move cursor between matching (closing, starting) bracket
 # dw  --> delete a word
 # cw  --> delete a word and change mode to insert
 # ci" --> deletes text inside " and change mode to insert
 # da' --> deletes text around '
+# va{ --> highligts around {}, including searching forward. So to example
+# fu[cursor]nction bar(bar: { x = 12, y = true, z = "dsfsdfsdf" }) {
+#     print(bar)
+# }
+# viw --> highligts word, even if you are in the middle of the word
+# p   --> paste content from va{ into viw, replacing it
 # dt) --> deletes text until )
 # =i{ --> formats text inside {
+# =ap --> formats paragraph, paragraph is a contignouse text
 
 # visual mode
-# =   --> fix indentation
+# =      --> fix indentation
+# o      --> will jump your cursor up and down
+# Ctrl+c --> breaks visual mode, useful after vi[o
 
 # command mode
 # :help lua-guide       --> help about lua
@@ -68,4 +92,4 @@
 # :LspInfo              --> opens information about which lsp client is 'active' on a file you entered the command
 #
 # :nmap                 --> opens all keymaps
-
+# :e!                   --> re-read original content of the file (basically undo everything)
