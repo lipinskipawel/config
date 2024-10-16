@@ -10,6 +10,7 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader><leader>", "<C-^>")
 vim.keymap.set("n", "<leader>ww", ":w!<CR>")
 vim.keymap.set("n", "<leader>wa", ":wa!<CR>") -- write for all buffers
+vim.keymap.set("n", "<leader>q", ":q!<CR>")
 vim.keymap.set("n", "<leader>e", ":Lex 30<CR>")
 
 vim.keymap.set("v", "p", '"_dP')
