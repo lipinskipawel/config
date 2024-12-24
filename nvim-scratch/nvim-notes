@@ -6,6 +6,8 @@ Trick yourself to enjoy reading :)
 :nnoremap <space>          --> will print normal remaps for space
 :lua = vim                 --> prints vim object
 :lua = vim.api             --> prints vim.api object
+:fclose                    --> closes floating window
+:fc                        --> closes floating window
 
 :e lua/config/lazy.lua     --> create a file lazy.lua inside of lua/config directory
 :e                         --> load the latest version
@@ -81,6 +83,30 @@ you can type
 Ctrl+/
 to see all the options
 
+# Buffers, Windows, Tabs
+A buffer is the in-memory text of a file.
+A window is a viewport on a buffer.
+A tab page is a collection of windows.
+
+The wincmd command can control windows. Windows are just view of a buffer.
+Thing for example about the quickfix list. qf list is just a window.
+:help :wincmd
+
+The idea is that Ctrl+w is the prefix that controls the windows.
+Ctrl+w q         --> closes the current window
+Ctrl+w s         --> opens a new window above
+Ctrl+w v         --> opens a new window on the right hand side
+Movments
+Ctrl+w h         --> move cursor to the right window
+Ctrl+w l         --> move cursor to the left window
+Ctrl+w j         --> move cursor to the window below
+Ctrl+w k         --> move cursor to the window above
+Last resort
+Ctrl+w Ctrl+w    --> cycle through the open windows
+
+in nvim keymap Ctrl+w is just <C-w>.
+
+
 # Motions
 0          --> jump to the front of the line
 $          --> jump to the end of the line
@@ -94,6 +120,7 @@ dd         --> delete the line
 u          --> undo last command
 U          --> to fix whole line
 =G         --> formats the current buffer
+gt         --> move you through the open tabs
 
 # Operators and Motions
 d$         --> delete to the end of the line
