@@ -51,3 +51,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.highlight.on_yank()
     end
 })
+
+vim.api.nvim_create_autocmd('TermOpen', {
+    group = vim.api.nvim_create_augroup('term-open-group', { clear = true }),
+    callback = function()
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+    end
+})
+
+local job_id = 0
+vim.keymap.set("n", "<leader>st", function()
+    vim.cmd.vnew()
+    vim.cmd.term()
+    vim.cmd.wincmd("J") -- move window down
+    vim.api.nvim_win_set_height(0, 15)
+
+    job_id = vim.bo.channel
+end)
+
+vim.keymap.set("n", "<leader>tt", function()
+    vim.fn.chansend(job_id, { "echo 'run my tests here'\r\n" })
+end)

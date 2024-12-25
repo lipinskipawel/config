@@ -24,6 +24,8 @@ Select the code and send command lua
 - type <lua>
 - enter
 
+In insert mode, press Ctrl+w to remove word, just like you would do Ctrl+backspace.
+
 # Nvim
 ## stdpath
 vim.fn.stdpath("data")
@@ -139,6 +141,8 @@ Ctrl+q will do that.
 :help ins-completion
 :help key-notation
 :help :map-alt-keys
+:help :term
+
 
 # Motions
 0          --> jump to the front of the line
