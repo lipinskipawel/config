@@ -41,7 +41,6 @@ vim.keymap.set("n", "<leader><leader>", "<C-^>")
 vim.keymap.set("n", "<leader>w", ":w!<CR>")
 vim.keymap.set("n", "<leader>aw", ":wa!<CR>") -- write for all buffers
 vim.keymap.set("n", "<leader>q", ":q!<CR>")
-vim.keymap.set("n", "<leader>e", ":Lex 30<CR>")
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = "Highlight when yanking (copying) text",

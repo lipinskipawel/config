@@ -74,7 +74,7 @@ to see omni completion,
 
 Ctrl+]         --> go to definition of a x, go to tag
 Ctrl+t         --> go back
-Ctrl+x,Ctrl+l;  --> completes current line
+Ctrl+x,Ctrl+;  --> completes current line
 
 Both nvim and lua lsp respects .editorconfig
 
@@ -86,6 +86,9 @@ While looking at Telescope find_files
 you can type
 Ctrl+/
 to see all the options
+
+# Oil
+press '-' to move to parent directory
 
 # Buffers, Windows, Tabs
 A buffer is the in-memory text of a file.
