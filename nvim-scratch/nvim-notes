@@ -1,18 +1,20 @@
 Trick yourself to enjoy reading :)
 
 # Commands
-:messages                  --> shows printed messages
-:source %                  --> source will run the file. % is a "placeholder" for current file.
-:nnoremap <space>          --> will print normal remaps for space
-:lua = vim                 --> prints vim object
-:lua = vim.api             --> prints vim.api object
-:fclose                    --> closes floating window
-:fc                        --> closes floating window
+:messages                         --> shows printed messages
+:source %                         --> source will run the file. % is a "placeholder" for current file.
+:nnoremap <space>                 --> will print normal remaps for space
+:lua = vim                        --> prints vim object
+:lua = vim.api                    --> prints vim.api object
+:fclose                           --> closes floating window
+:fc                               --> closes floating window
+:verbose map g                    --> opens mappings for 'g'
+:lua vim.diagnostic.setqflist()   --> opens mappings for 'g'
 
-:e lua/config/lazy.lua     --> create a file lazy.lua inside of lua/config directory
-:e                         --> load the latest version
-:e!                        --> load the latest version even if you have unsaved changes
-!mkdir lua                 --> execute mkdir lua
+:e lua/config/lazy.lua            --> create a file lazy.lua inside of lua/config directory
+:e                                --> load the latest version
+:e!                               --> load the latest version even if you have unsaved changes
+!mkdir lua                        --> execute mkdir lua
 
 # Tricks
 Run only visually selected lua code.
@@ -106,6 +108,37 @@ Ctrl+w Ctrl+w    --> cycle through the open windows
 
 in nvim keymap Ctrl+w is just <C-w>.
 
+# Quickfix list
+The idea is to support edit-compile-edit cycle.
+Save errors from compiler to quickfix list and fix one after the other.
+
+How to get errors into quickfix list
+  - inside Telescope Ctrl+q (find_files, ...)
+  - inside Lsp Ctrl+q (grr, find references)
+  - vim.diagnostic.setqflist()
+	-- write function that filter only to the current project
+  - setqjlist()
+  - make as well, but maybe lsp is better
+
+You can also "move" files found by Telescope into quickfix list.
+Ctrl+q will do that.
+
+    " get the title of the current quickfix list
+    :echo getqflist({'title' : 0}).title
+
+:copen                 --> open quickfix list
+:cclose                --> close quickfix list
+:cnext                 --> open next error on the buffer from quickfix list
+:cprev                 --> open previous error on the buffer from quickfix list
+:cdo s/some/more/gc    --> will execute 's/some/more' on every quickfix item.
+    useful when you what to rename variable just
+    do grr (find references) and then :cdo s/some/more
+
+# Helps
+:help substitute
+:help ins-completion
+:help key-notation
+:help :map-alt-keys
 
 # Motions
 0          --> jump to the front of the line

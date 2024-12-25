@@ -25,6 +25,12 @@ vim.keymap.set("n", "<leader>x", ":.lua<CR>")
 vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
 
+-- M is meta key (which is usually Alt)
+-- A is Atl
+vim.keymap.set("n", "A-j", "<cmd>cnext<CR>")
+vim.keymap.set("n", "A-k", "<cmd>cprev<CR>")
+
+
 -- this is in nvim nightly
 vim.keymap.set('n', 'grr', vim.lsp.buf.references)
 vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
