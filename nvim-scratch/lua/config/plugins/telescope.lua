@@ -21,11 +21,11 @@ return {
 
         local builtin = require('telescope.builtin')
 
-        vim.keymap.set("n", "<leader>h", builtin.help_tags)
+        vim.keymap.set("n", "<leader>fh", builtin.help_tags)
 
-        vim.keymap.set("n", "<leader>f", builtin.find_files)
-        vim.keymap.set("n", "<leader>g", builtin.git_files)
-        vim.keymap.set("n", "<leader>s", builtin.live_grep)
+        vim.keymap.set("n", "<leader>fd", builtin.find_files)
+        vim.keymap.set("n", "<leader>fg", builtin.git_files)
+        vim.keymap.set("n", "<leader>fs", builtin.live_grep)
 
         vim.keymap.set("n", "<leader>en", function()
             local opts = require('telescope.themes').get_ivy({
@@ -33,5 +33,14 @@ return {
             })
             builtin.find_files(opts)
         end)
+
+        -- find files that came from your plugins
+        vim.keymap.set("n", "<leader>ep", function()
+            builtin.find_files {
+                cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+            }
+        end)
+
+        require "config.telescope.multigrep".setup()
     end
 }
