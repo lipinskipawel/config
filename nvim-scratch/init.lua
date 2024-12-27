@@ -2,6 +2,8 @@ require("config.lazy")
 
 print("Hello")
 
+vim.opt.shiftwidth = 4
+
 -- source current file
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
 -- run the current line

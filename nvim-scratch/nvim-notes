@@ -31,6 +31,15 @@ This follows xdg config path (.local/share/nvim).
 vim.opt.rtp:prepend(lazypath)
 Put lazypath into the runtimepath of nvim
 
+## options
+Default to 1 tab and display it as 8 spaces (columns).
+vim.opt.shiftwidth = 8, let's change that to 4
+
+In your .config create after/ftplugin folder and then files with local config.
+To set local config for lua files just create file lua.lua with config
+vim.opt_local.shiftwidth = 2
+
+
 # Plugins
 Runtime path   --> :echo nvim_list_runtime_paths()
 nvim will look through runtime_paths() for lua folder and load lua files.
