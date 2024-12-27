@@ -3,6 +3,13 @@ require("config.lazy")
 print("Hello")
 
 vim.opt.shiftwidth = 4
+vim.opt.clipboard = "unnamedplus" -- allow access to the system clipboard
+
+-- this will change the of functions.builtin for lua files
+-- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/queries/lua/highlights.scm#L217
+vim.cmd [[hi @function.builtin.lua guifg=yellow ]]
+-- for all files
+-- vim.cmd [[hi @function.builtin guifg=yellow ]]
 
 -- source current file
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
