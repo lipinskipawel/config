@@ -1,3 +1,5 @@
+require("config.lazy")
+
 print("Hello")
 
 -- source current file

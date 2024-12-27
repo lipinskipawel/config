@@ -1,11 +1,16 @@
 Trick yourself to enjoy reading :)
 
 # Commands
-:messages           --> shows printed messages
-:source %           --> source will run the file. % is a "placeholder" for current file.
-:nnoremap <space>   --> will print normal remaps for space
-:lua = vim          --> prints vim object
-:lua = vim.api      --> prints vim.api object
+:messages                  --> shows printed messages
+:source %                  --> source will run the file. % is a "placeholder" for current file.
+:nnoremap <space>          --> will print normal remaps for space
+:lua = vim                 --> prints vim object
+:lua = vim.api             --> prints vim.api object
+
+:e lua/config/lazy.lua     --> create a file lazy.lua inside of lua/config directory
+:e                         --> load the latest version
+:e!                        --> load the latest version even if you have unsaved changes
+!mkdir lua                 --> execute mkdir lua
 
 # Tricks
 Run only visually selected lua code.
@@ -14,6 +19,25 @@ Select the code and send command lua
 - type <:>
 - type <lua>
 - enter
+
+# Nvim
+## stdpath
+vim.fn.stdpath("data")
+Nvim has built-in functions that are living inside vim.fn. You can execute them
+:echo stdpath("data")
+This follows xdg config path (.local/share/nvim).
+
+## runtime path
+vim.opt.rtp:prepend(lazypath)
+Put lazypath into the runtimepath of nvim
+
+# Plugins
+Runtime path   --> :echo nvim_list_runtime_paths()
+nvim will look through runtime_paths() for lua folder and load lua files.
+
+## Lazy
+Downloads the plugin, puts it inside nvim runtimepath so then your config
+will be able to use code from plugin.
 
 # Motions
 0          --> jump to the front of the line
