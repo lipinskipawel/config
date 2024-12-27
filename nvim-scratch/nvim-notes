@@ -1,0 +1,37 @@
+Trick yourself to enjoy reading :)
+
+# Commands
+:messages           --> shows printed messages
+:source %           --> source will run the file. % is a "placeholder" for current file.
+:nnoremap <space>   --> will print normal remaps for space
+:lua = vim          --> prints vim object
+:lua = vim.api      --> prints vim.api object
+
+# Tricks
+Run only visually selected lua code.
+Select the code and send command lua
+- select
+- type <:>
+- type <lua>
+- enter
+
+# Motions
+0          --> jump to the front of the line
+$          --> jump to the end of the line
+w          --> jump to the start of next word
+e          --> jump to the end of next word
+b          --> jump to the start of previous word
+
+# Operator
+d          --> delete the character
+dd         --> delete the line
+u          --> undo last command
+U          --> to fix whole line
+
+# Operators and Motions
+d$         --> delete to the end of the line
+
+# Count operation motion
+d2w        --> deletes next 2 words
+2w         --> jumps 2 words
+
