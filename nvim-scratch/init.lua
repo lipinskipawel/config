@@ -18,12 +18,17 @@ vim.keymap.set("n", "<space>x", ":.lua<CR>")
 -- run the selected lines
 vim.keymap.set("v", "<space>x", ":lua<CR>")
 
+-- this is in nvim nightly
+vim.keymap.set('n', 'grr', vim.lsp.buf.references)
+vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
+vim.keymap.set('n', 'gra', vim.lsp.buf.code_action)
+
 vim.api.nvim_create_autocmd('TextYankPost', {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup('yank-group', { clear = true }),
-	callback = function()
-		-- :help vim.highlight.on_yank()
-		vim.highlight.on_yank()
-	end
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup('yank-group', { clear = true }),
+    callback = function()
+	-- :help vim.highlight.on_yank()
+	vim.highlight.on_yank()
+    end
 })
 

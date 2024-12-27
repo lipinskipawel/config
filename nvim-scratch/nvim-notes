@@ -52,6 +52,22 @@ Downloads the plugin, puts it inside nvim runtimepath so then your config
 will be able to use code from plugin.
 
 the 'build' configuration is executed whenever we update given plugin.
+:InspectTree
+
+## LSP
+
+:help lsp
+
+:echo executable('lua_ls')
+
+type
+vim.l
+then Ctrl+x, Ctrl+o
+to see omni completion,
+:help ins-completion
+
+Ctrl+]     --> go to definition of a x, go to tag
+Ctrl+t     --> go back
 
 # Motions
 0          --> jump to the front of the line
@@ -65,6 +81,7 @@ d          --> delete the character
 dd         --> delete the line
 u          --> undo last command
 U          --> to fix whole line
+=G         --> formats the current buffer
 
 # Operators and Motions
 d$         --> delete to the end of the line
