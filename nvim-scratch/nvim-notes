@@ -49,6 +49,15 @@ In your .config create after/ftplugin folder and then files with local config.
 To set local config for lua files just create file lua.lua with config
 vim.opt_local.shiftwidth = 2
 
+## Menu
+All the configuration for menu must be done in vimscript
+vim.cmd [[
+    aunmenu PopUp
+]]
+aunmenu PopUp    --> AllUnMenu PopUp
+
+## Jump list and tag stack
+
 ## Treesitter
 Treesitter already is installed with nvim, just execute command
 :lua vim.treesitter.
