@@ -2,11 +2,11 @@ return {
     'stevearc/oil.nvim',
     enabled = true,
     opts = {},
-    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     config = function()
         require("oil").setup({
-            columns = { "icon" },
+            -- columns = { "icon" },
             keymaps = {
                 ["<C-h"] = false,
                 -- ["<M-h>"] = "actions.select_split",

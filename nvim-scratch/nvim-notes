@@ -33,6 +33,10 @@ Nvim has built-in functions that are living inside vim.fn. You can execute them
 :echo stdpath("data")
 This follows xdg config path (.local/share/nvim).
 
+:echo &buftype
+in lua land
+:lua =vim.bo.buftype
+
 ## runtime path
 vim.opt.rtp:prepend(lazypath)
 Put lazypath into the runtimepath of nvim
@@ -52,6 +56,8 @@ Treesitter already is installed with nvim, just execute command
 # Plugins
 Runtime path   --> :echo nvim_list_runtime_paths()
 nvim will look through runtime_paths() for lua folder and load lua files.
+nvim will also look at 'plugin' folder in your nvim config directory. Those files
+will be automatically source at every nvim startup.
 
 ## Lazy
 Downloads the plugin, puts it inside nvim runtimepath so then your config
@@ -59,6 +65,11 @@ will be able to use code from plugin.
 
 the 'build' configuration is executed whenever we update given plugin.
 :InspectTree
+
+## API
+vim.inspect
+Create user command
+vim.api.nvim_create_user_command
 
 ## LSP
 

@@ -36,6 +36,8 @@ vim.keymap.set('n', 'grr', vim.lsp.buf.references)
 vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
 vim.keymap.set('n', 'gra', vim.lsp.buf.code_action)
 
+vim.keymap.set('t', '<esc><esc>', "<C-\\><C-n>")
+
 
 vim.keymap.set("n", "<leader><leader>", "<C-^>")
 vim.keymap.set("n", "<leader>w", ":w!<CR>")
