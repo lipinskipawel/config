@@ -1,22 +1,35 @@
 Trick yourself to enjoy reading :)
 
 # Commands
+
+:help vim.o                       --> help about options
+:nmap                             --> open all normal keymaps
 :messages                         --> shows printed messages
 :source %                         --> source will run the file. % is a "placeholder" for current file.
 :nnoremap <space>                 --> will print normal remaps for space
-:lua = vim                        --> prints vim object
-:lua = vim.api                    --> prints vim.api object
-:fclose                           --> closes floating window
-:fc                               --> closes floating window
+:lua =vim                         --> prints vim object
+:lua =vim.api                     --> prints vim.api object
 :verbose map g                    --> opens mappings for 'g'
 :lua vim.diagnostic.setqflist()   --> opens mappings for 'g'
+:echo nvim_list_runtime_paths()   --> list runtimepath
+:echo executable('lua_ls')        --> check whether nvim can run executable (0 - false, 1 - true)
 
 :e lua/config/lazy.lua            --> create a file lazy.lua inside of lua/config directory
 :e                                --> load the latest version
 :e!                               --> load the latest version even if you have unsaved changes
-!mkdir lua                        --> execute mkdir lua
+:!mkdir lua                       --> execute mkdir lua
+
+
+## Helps
+:help substitute
+:help ins-completion
+:help key-notation
+:help :map-alt-keys
+:help :term
+
 
 # Tricks
+
 Run only visually selected lua code.
 Select the code and send command lua
 - select
@@ -26,8 +39,10 @@ Select the code and send command lua
 
 In insert mode, press Ctrl+w to remove word, just like you would do Ctrl+backspace.
 
+
 # Nvim
 ## stdpath
+
 vim.fn.stdpath("data")
 Nvim has built-in functions that are living inside vim.fn. You can execute them
 :echo stdpath("data")
@@ -37,11 +52,15 @@ This follows xdg config path (.local/share/nvim).
 in lua land
 :lua =vim.bo.buftype
 
+
 ## runtime path
+
 vim.opt.rtp:prepend(lazypath)
 Put lazypath into the runtimepath of nvim
 
+
 ## options
+
 Default to 1 tab and display it as 8 spaces (columns).
 vim.opt.shiftwidth = 8, let's change that to 4
 
@@ -49,36 +68,44 @@ In your .config create after/ftplugin folder and then files with local config.
 To set local config for lua files just create file lua.lua with config
 vim.opt_local.shiftwidth = 2
 
+
 ## Menu
+
 All the configuration for menu must be done in vimscript
 vim.cmd [[
     aunmenu PopUp
 ]]
 aunmenu PopUp    --> AllUnMenu PopUp
 
-## Jump list and tag stack
 
 ## Treesitter
+
 Treesitter already is installed with nvim, just execute command
 :lua vim.treesitter.
 
+
 # Plugins
+
 Runtime path   --> :echo nvim_list_runtime_paths()
 nvim will look through runtime_paths() for lua folder and load lua files.
 nvim will also look at 'plugin' folder in your nvim config directory. Those files
 will be automatically source at every nvim startup.
 
+
 ## Lazy
+
 Downloads the plugin, puts it inside nvim runtimepath so then your config
 will be able to use code from plugin.
 
 the 'build' configuration is executed whenever we update given plugin.
 :InspectTree
 
+
 ## API
 vim.inspect
 Create user command
 vim.api.nvim_create_user_command
+
 
 ## LSP
 
@@ -94,9 +121,15 @@ to see omni completion,
 
 Ctrl+]         --> go to definition of a x, go to tag
 Ctrl+t         --> go back
-Ctrl+x,Ctrl+;  --> completes current line
+Ctrl+x,Ctrl+l  --> completes current line
 
 Both nvim and lua lsp respects .editorconfig
+
+
+## Omnifunc related topics
+
+https://github.com/echasnovski/mini.nvim/discussions/811
+
 
 ## Telescope
 
@@ -108,9 +141,12 @@ Ctrl+/
 to see all the options
 
 # Oil
-press '-' to move to parent directory
+
+Press '-' to move to parent directory
+
 
 # Buffers, Windows, Tabs
+
 A buffer is the in-memory text of a file.
 A window is a viewport on a buffer.
 A tab page is a collection of windows.
@@ -119,21 +155,23 @@ The wincmd command can control windows. Windows are just view of a buffer.
 Thing for example about the quickfix list. qf list is just a window.
 :help :wincmd
 
-The idea is that Ctrl+w is the prefix that controls the windows.
-Ctrl+w q         --> closes the current window
-Ctrl+w s         --> opens a new window above
-Ctrl+w v         --> opens a new window on the right hand side
-Movments
-Ctrl+w h         --> move cursor to the right window
-Ctrl+w l         --> move cursor to the left window
-Ctrl+w j         --> move cursor to the window below
-Ctrl+w k         --> move cursor to the window above
-Last resort
-Ctrl+w Ctrl+w    --> cycle through the open windows
+Ctrl+w is a prefix key.
+prefix q         --> close current window
+prefix v         --> open new window vertically
+prefix s         --> open new window horizontally
+:fclose          --> close floating window
+:fc              --> close floating window
 
-in nvim keymap Ctrl+w is just <C-w>.
+Movments
+prefix h         --> move cursor to the right window
+prefix j         --> move cursor to the window below
+prefix k         --> move cursor to the window above
+prefix l         --> move cursor to the left window
+prefix prefix    --> cycle through the open windows
+
 
 # Quickfix list
+
 The idea is to support edit-compile-edit cycle.
 Save errors from compiler to quickfix list and fix one after the other.
 
@@ -142,6 +180,7 @@ How to get errors into quickfix list
   - inside Lsp Ctrl+q (grr, find references)
   - vim.diagnostic.setqflist()
 	-- write function that filter only to the current project
+  - vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<CR>", { buffer = 0 })
   - setqjlist()
   - make as well, but maybe lsp is better
 
@@ -159,33 +198,138 @@ Ctrl+q will do that.
     useful when you what to rename variable just
     do grr (find references) and then :cdo s/some/more
 
-# Helps
-:help substitute
-:help ins-completion
-:help key-notation
-:help :map-alt-keys
-:help :term
-
 
 # Motions
+
 0          --> jump to the front of the line
+^          --> jump to the front of the line
 $          --> jump to the end of the line
+b          --> jump to the start of PREVIOUS word
+e          --> jump to the end of NEXT word
+f          --> find next character
+F          --> find previous character
 w          --> jump to the start of next word
-e          --> jump to the end of next word
-b          --> jump to the start of previous word
+W          --> jump to the start of next word respecting only whitespaces
+;          --> jump to next (forwards) in 'that' list from 'f'
+,          --> jump to previous (backwards) in 'that' list from 'f'
+}          --> jump to next paragraph
+{          --> jump to previous paragraph
+%          --> move cursor between matching bracket
+
 
 # Operator
+
+c          --> delete selected text and change mode to Insert
+C          --> delete until the end of a line and change mode to Insert
 d          --> delete the character
 dd         --> delete the line
+D          --> delete until the end of a line
 u          --> undo last command
-U          --> to fix whole line
-=G         --> formats the current buffer
-gt         --> move you through the open tabs
+U          --> undo changes in the line
+Ctrl+r     --> redo the change
+p          --> paste content
+v          --> start visual mode
+V          --> start visual mode, selecting current line
+y          --> yank selected text
+yy         --> yank current line
+Y          --> yank until the end of a line
+x          --> remove one character and stays in normal mode
+ZZ         --> write current buffer and exits nvim
+.          --> repeat last change
+=          --> formats selected lines
+
 
 # Operators and Motions
+
+All operatiors and motions like va[, di", cap works even when the cursor before given
+matching criteria '[', '"', 'p'. Also such operators and motions like viw, caw works
+even when the cursor is in the middle of a word. It is the same mechanism as cap.
+Yank is a exception.
+
+=G         --> fix indentation on the current buffer
+=ap        --> fix indentation around paragraph
+=i{        --> fix indentation inside '{'
 d$         --> delete to the end of the line
+dap        --> delete around paragraph
+dip        --> delete inside paragraph
+dt)        --> delete text until ) (without the ')')
+df)        --> delete text up to ) (with the ')')
+va{        --> select around '{'
 
 # Count operation motion
+
+7.         --> repeat last change 7 times
 d2w        --> deletes next 2 words
 2w         --> jumps 2 words
 
+
+# Ctrl+
+
+Tagstack is a different idea than jump list.
+Jump list is based on movements, Tagstack is based on go to definition.
+It is useful when you are done exploring the file and want to go back to
+where you were before 'gd'.
+
+Ctrl+o     --> jump through the "jump list" backwards      :help jumplist
+Ctrl+i     --> jump through the "jump list" forwards       :help jumplist
+Ctrl+t     --> jump through tagstack                       :help tagstack
+
+
+Ctrl+e     --> move screen down without moving cursor
+Ctrl+y     --> move screen up without moving cursor
+
+Ctrl+a     --> increment a number under the cursor or the first occurance
+Ctrl+x     --> decrement a number under the cursor or the first occurance
+3Ctrl+a    --> add 3 to the current number or the next one
+
+
+# Mappings
+
+See :map-alt-keys
+
+Ctrl+w     --> <C-w>
+Alt+w      --> <A-w>
+Meta+w     --> <M-w>
+
+J          --> move line below to the end of line above
+gt         --> move you through the open tabs
+za         --> to fold/unfold the text
+zz         --> center the view vertically
+zt         --> move view up
+zb         --> move view down
+
+
+# Visual mode
+
+=          --> fix indentation
+o          --> will jump your cursor up and down
+Ctrl+c     --> breaks visual mode, useful after vi[o
+
+
+# Multi cursor
+
+Start with
+  --> Ctrl+v
+  --> use j,k to set multi cursor
+  --> I
+  --> write what you need
+  --> ESC
+
+
+### old notes
+
+# command mode
+# :help lua-guide       --> help about lua
+# :help lazy.nvim.txt   --> help about lua
+# :h telescope.setup()  --> help about setting up telescope
+# :h telescope.builtin  --> help about telescop builtin functions
+# :h nvim-treesitter    --> help about treesitter
+# :h modeline           --> the line beneath
+# :h rtp                --> help about runtimepath
+# :e %:h/filename       --> create new file in existing directory called filename
+# :so                   --> source 'this' file
+# :Lexplore             --> will open directory explorer
+# :LspInstallInfo       --> information about installed servers. press 'i' to install, 'u' to update, 'X' to uninstall
+# :LspInfo              --> opens information about which lsp client is 'active' on a file you entered the command
+#
+# :e!                   --> re-read original content of the file (basically undo everything)
