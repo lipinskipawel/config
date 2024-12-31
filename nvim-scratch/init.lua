@@ -1,16 +1,5 @@
 require("config.lazy")
 
-print("Hello")
-
-vim.opt.shiftwidth = 4
-vim.opt.clipboard = "unnamedplus" -- allow access to the system clipboard
-
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.writebackup = false
-vim.opt.undofile = true
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-
 -- this will change the of functions.builtin for lua files
 -- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/queries/lua/highlights.scm#L217
 vim.cmd [[hi @function.builtin.lua guifg=yellow ]]
