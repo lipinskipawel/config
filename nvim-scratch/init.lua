@@ -6,32 +6,6 @@ vim.cmd [[hi @function.builtin.lua guifg=yellow ]]
 -- for all files
 -- vim.cmd [[hi @function.builtin guifg=yellow ]]
 
--- source current file
-vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
--- run the current line
-vim.keymap.set("n", "<leader>x", ":.lua<CR>")
--- run the selected lines
-vim.keymap.set("v", "<leader>x", ":lua<CR>")
-
-
--- M is meta key (which is usually Alt)
--- A is Atl
-vim.keymap.set("n", "A-j", "<cmd>cnext<CR>")
-vim.keymap.set("n", "A-k", "<cmd>cprev<CR>")
-
-
--- this is in nvim nightly
-vim.keymap.set('n', 'grr', vim.lsp.buf.references)
-vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
-vim.keymap.set('n', 'gra', vim.lsp.buf.code_action)
-
-vim.keymap.set('t', '<esc><esc>', "<C-\\><C-n>")
-
-
-vim.keymap.set("n", "<leader><leader>", "<C-^>")
-vim.keymap.set("n", "<leader>w", ":w!<CR>")
-vim.keymap.set("n", "<leader>aw", ":wa!<CR>") -- write for all buffers
-vim.keymap.set("n", "<leader>q", ":q!<CR>")
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = "Highlight when yanking (copying) text",
