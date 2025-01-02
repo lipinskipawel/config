@@ -109,6 +109,18 @@ vim.api.nvim_create_user_command
 
 ## LSP
 
+Neovim has builtin LSP Client.
+
+https://github.com/neovim/nvim-lspconfig
+Is a handly repository containing default LSP client configuration for LSP server.
+See https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
+
+Use also those two plugins below for installing servers and aligning server names
+between lspconfig and Mason.
+
+https://github.com/williamboman/mason-lspconfig.nvim
+https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
+
 :help lsp
 
 :echo executable('lua_ls')
@@ -293,6 +305,7 @@ Meta+w     --> <M-w>
 
 J          --> move line below to the end of line above
 gt         --> move you through the open tabs
+gx         --> open http link
 za         --> to fold/unfold the text
 zz         --> center the view vertically
 zt         --> move view up

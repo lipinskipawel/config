@@ -2,6 +2,9 @@ return {
     'neovim/nvim-lspconfig',
     enabled = true,
     dependencies = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
         'saghen/blink.cmp',
         {
             "folke/lazydev.nvim",
@@ -16,10 +19,18 @@ return {
         },
     },
     config = function()
+        require("mason").setup()
+        local mason_tool_installer = require("mason-tool-installer")
+        local lspconfig = require("lspconfig")
         local capabilities = require('blink.cmp').get_lsp_capabilities()
-        require("lspconfig").lua_ls.setup {
-            capabilities = capabilities,
-            cmd = { "lua_ls" },
+
+        local ensure_installed = {
+            "lua_ls"
+        }
+        mason_tool_installer.setup { ensure_installed = ensure_installed }
+
+        lspconfig.lua_ls.setup {
+            capabilities = capabilities
         }
 
         vim.api.nvim_create_autocmd('LspAttach', {
