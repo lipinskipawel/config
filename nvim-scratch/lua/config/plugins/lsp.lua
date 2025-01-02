@@ -25,13 +25,15 @@ return {
         local capabilities = require('blink.cmp').get_lsp_capabilities()
 
         local ensure_installed = {
-            "lua_ls"
+            "lua_ls",
+            "gopls"
         }
         mason_tool_installer.setup { ensure_installed = ensure_installed }
 
         lspconfig.lua_ls.setup {
             capabilities = capabilities
         }
+        lspconfig.gopls.setup({})
 
         vim.api.nvim_create_autocmd('LspAttach', {
             callback = function(args)
