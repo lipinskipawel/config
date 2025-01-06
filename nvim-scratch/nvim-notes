@@ -39,6 +39,9 @@ Select the code and send command lua
 
 In insert mode, press Ctrl+w to remove word, just like you would do Ctrl+backspace.
 
+# Autocommands
+To me, it seems like it creates the command and execute it whenever given event is triggered.
+vim.api.nvim_create_autocmd(event, tbl)
 
 # Nvim
 ## stdpath
@@ -90,6 +93,27 @@ Runtime path   --> :echo nvim_list_runtime_paths()
 nvim will look through runtime_paths() for lua folder and load lua files.
 nvim will also look at 'plugin' folder in your nvim config directory. Those files
 will be automatically source at every nvim startup.
+
+# Writing plugin
+
+https://github.com/lipinskipawel/present.nvim
+lua       --> holds all the info that people can required from my plugin
+plugin    --> holds all the code that will run on startup
+
+
+## Loading plugin into nvim
+
+Add your plugin like any other pluging using lazy, but specify 'dir =""'.
+- After that you have to load the plugin, run the file.
+    Inside of your plugin folder of your pluging just create a file 'load_present.lua'
+    and add 'required("present")'
+- Or in the plugin config of lazy, just add config "required 'present'"
+
+## Testing pluging
+
+Add tests/ directory and start adding lua files that ends with `spec`.
+To run a test just execute command :PlenaryBustedFile %
+To run a directory full of tests just run nvim PlenaryBustedDirectory
 
 
 ## Lazy
@@ -226,7 +250,7 @@ W          --> jump to the start of next word respecting only whitespaces
 ,          --> jump to previous (backwards) in 'that' list from 'f'
 }          --> jump to next paragraph
 {          --> jump to previous paragraph
-%          --> move cursor between matching bracket
+%          --> move cursor between matching section ({['""']})
 
 
 # Operator
@@ -262,11 +286,14 @@ Yank is a exception.
 =ap        --> fix indentation around paragraph
 =i{        --> fix indentation inside '{'
 d$         --> delete to the end of the line
+d%         --> deletes section
 dap        --> delete around paragraph
 dip        --> delete inside paragraph
 dt)        --> delete text until ) (without the ')')
 df)        --> delete text up to ) (with the ')')
 va{        --> select around '{'
+V%y        --> yank selected lines under the % jump
+gc%        --> [un]comment out section
 
 # Count operation motion
 
