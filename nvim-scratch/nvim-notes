@@ -235,6 +235,36 @@ Ctrl+q will do that.
     do grr (find references) and then :cdo s/some/more
 
 
+# Macro
+
+You can save any sequence of keys as a macro. To start recording macro type `q` and
+the litter you want to save sequence to. At the end of a macro just type `q` again.
+
+Example macro
+qa
+0d2wj
+q
+
+To execute macro one must type `@a`.
+To execute macro 10 times one must type `10@a`.
+
+As of my understanding macro and registers are the same thing.
+To paste from register just type `"ap`.
+:registers
+
+
+# Mark
+
+Marks works like a bookmarks really.
+It is possible to control scope of a mark to current file or global.
+
+Set current file mark by typing `ma`.
+Set global mark by typing `mA`.
+
+Go to mark 'a' by typing `\`a`.
+Go to first non-blank charactor of mark 'a' by typing `'a`.
+
+
 # Motions
 
 0          --> jump to the front of the line
@@ -244,6 +274,7 @@ b          --> jump to the start of PREVIOUS word
 e          --> jump to the end of NEXT word
 f          --> find next character
 F          --> find previous character
+t          --> find next character and stop before it
 w          --> jump to the start of next word
 W          --> jump to the start of next word respecting only whitespaces
 ;          --> jump to next (forwards) in 'that' list from 'f'
@@ -251,6 +282,7 @@ W          --> jump to the start of next word respecting only whitespaces
 }          --> jump to next paragraph
 {          --> jump to previous paragraph
 %          --> move cursor between matching section ({['""']})
+50%        --> move to the middle of a file
 
 
 # Operator
@@ -273,6 +305,10 @@ x          --> remove one character and stays in normal mode
 ZZ         --> write current buffer and exits nvim
 .          --> repeat last change
 =          --> formats selected lines
+>>         --> indent the current line
+<<         --> unindent the current line
+~          --> invert the case of current character
+"          --> start selecting register
 
 
 # Operators and Motions
@@ -282,6 +318,10 @@ matching criteria '[', '"', 'p'. Also such operators and motions like viw, caw w
 even when the cursor is in the middle of a word. It is the same mechanism as cap.
 Yank is a exception.
 
+gt         --> switch between tabs
+g~w        --> invert characters in a word
+gu$        --> change characters to lowecase to the end of line
+gUG        --> change characters to uppercase to the end of line a file
 =G         --> fix indentation on the current buffer
 =ap        --> fix indentation around paragraph
 =i{        --> fix indentation inside '{'
@@ -291,15 +331,20 @@ dap        --> delete around paragraph
 dip        --> delete inside paragraph
 dt)        --> delete text until ) (without the ')')
 df)        --> delete text up to ) (with the ')')
+<ip        --> indent current paragraph
 va{        --> select around '{'
 V%y        --> yank selected lines under the % jump
 gc%        --> [un]comment out section
+"ap        --> paste content of register 'a'
+3|         --> move to third column character
+
 
 # Count operation motion
 
 7.         --> repeat last change 7 times
 d2w        --> deletes next 2 words
 2w         --> jumps 2 words
+3>>        --> indent current line and 2 lines below
 
 
 # Ctrl+
@@ -310,12 +355,12 @@ It is useful when you are done exploring the file and want to go back to
 where you were before 'gd'.
 
 Ctrl+o     --> jump through the "jump list" backwards      :help jumplist
-Ctrl+i     --> jump through the "jump list" forwards       :help jumplist
+Ctrl+i     --> jump through the "jump list" forwards       :jumps
 Ctrl+t     --> jump through tagstack                       :help tagstack
 
 
-Ctrl+e     --> move screen down without moving cursor
-Ctrl+y     --> move screen up without moving cursor
+Ctrl+e     --> scroll up by line
+Ctrl+y     --> scroll down by line
 
 Ctrl+a     --> increment a number under the cursor or the first occurance
 Ctrl+x     --> decrement a number under the cursor or the first occurance
@@ -339,11 +384,23 @@ zt         --> move view up
 zb         --> move view down
 
 
+# Insert mode
+
+Ctrl+p           --> autocomplete word based on the matching words in the backward direction
+Ctrl+n           --> autocomplete word based on the matching words in the forward direction
+Ctrl+y           --> select autocomplete text
+Ctrl+e           --> cancel autocomplete
+Esc              --> cancel autocomplete
+Ctrl+x Ctrl+l    --> autocomplete line based on the matching lines in the backward direction
+
+
 # Visual mode
 
-=          --> fix indentation
+=          --> auto indent code
 o          --> will jump your cursor up and down
 Ctrl+c     --> breaks visual mode, useful after vi[o
+>          --> indent visually selected lines once
+~          --> invert the case of visually selected characters
 
 
 # Multi cursor
