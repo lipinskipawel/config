@@ -2,6 +2,7 @@ abbr -a yr 'cal -y'
 abbr -a e nvim
 abbr -a g git
 abbr -a t tmux
+abbr -a d docker
 abbr -a ga 'git commit --amend'
 abbr -a gc 'git checkout'
 abbr -a j8 'sudo archlinux-java set java-8-openjdk'
