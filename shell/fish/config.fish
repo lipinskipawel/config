@@ -18,5 +18,6 @@ if status is-interactive
   # add rust toolchain to path, universal, to the front by default
   fish_add_path "$HOME/.cargo/bin"
   fish_add_path "$HOME/.local/bin"
+  fish_add_path "/usr/local/go/bin/"
 end
 
