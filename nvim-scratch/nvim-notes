@@ -319,6 +319,7 @@ even when the cursor is in the middle of a word. It is the same mechanism as cap
 Yank is a exception.
 
 gt         --> switch between tabs
+gO         --> list all symbols in the current buffer
 g~w        --> invert characters in a word
 gu$        --> change characters to lowecase to the end of line
 gUG        --> change characters to uppercase to the end of line a file

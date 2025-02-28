@@ -11,11 +11,30 @@ set("n", "A-k", "<cmd>cprev<CR>zz", { desc = "Go to PREV error on quickfix list"
 set("n", "<leader>co", ":copen<CR>", { desc = "Open quickfix" })
 set("n", "<leader>cc", ":cclose<CR>", { desc = "Use ESC to close quickfix" })
 
+-- PR in neovim https://github.com/neovim/neovim/pull/28650/files
+-- :help lsp-quickstart
+-- default mappings https://neovim.io/doc/user/vim_diff.html#default-mappings
+set('n', '<C-]>', vim.lsp.buf.definition, { desc = "Jumps to the definition" })
+set('n', 'gri', vim.lsp.buf.implementation, { desc = "List all the implementations" })
 
--- this is in nvim nightly, learn more about those
-set('n', 'grr', vim.lsp.buf.references)
-set('n', 'grn', vim.lsp.buf.rename)
-set('n', 'gra', vim.lsp.buf.code_action)
+set('n', 'grr', vim.lsp.buf.references, { desc = "List all references" })
+set('n', 'grn', vim.lsp.buf.rename, { desc = "Rename all references symbol" })
+set({ 'n', 'x' }, 'gra', vim.lsp.buf.code_action, { desc = "Open code action under the cursor" })
+set('i', '<C-s>', vim.lsp.buf.signature_help, { desc = "Dispaly signature help under the cursor" })
+-- existing
+-- set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous error" })
+-- set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next error" })
+
+
+-- see also config of lsp-zero
+-- https://lsp-zero.netlify.app/blog/lsp-config-overview.html
+set('n', '<C-w>d', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = "Open floating window with errors/warnings" })
+set('n', '<C-w>o', function() vim.lsp.buf.workspace_symbol() end, { desc = "Query workspace symbols" })
+
+-- investigate
+-- set("v", "p", '"_dP')
+-- set("v", "<leader>p", '"_dP')
+-- set({ "n", "v" }, "<leader>d", '"_d') -- deleting void register
 
 set('t', '<esc><esc>', "<C-\\><C-n>", { desc = "Use double-ESC to switch to normal mode in terminal" })
 
