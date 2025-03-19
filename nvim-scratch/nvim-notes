@@ -17,7 +17,39 @@ Trick yourself to enjoy reading :)
 :e lua/config/lazy.lua            --> create a file lazy.lua inside of lua/config directory
 :e                                --> load the latest version
 :e!                               --> load the latest version even if you have unsaved changes
+:.!                               --> type `!!` in normal mode. executes shell command and insert output to buffer
 :!mkdir lua                       --> execute mkdir lua
+:norm                             --> more powerfull find and replace, run macro on each line
+
+## norm
+Select lines and type `:` then your sequence of keys
+motions/inserts
+
+cat,
+special_cat,
+dog,
+house,
+
+do: add `.append()` before the `,`:
+--select lines and type-- :norm f,i.append()
+cat.append(),
+special_cat.append(),
+dog.append(),
+house.append(),
+
+do: put variable names inside ("..."):
+-- select lines and type-- :norm _yt.f(a"^[p" -- ctrl+v+ESC for going back to normal, from insert
+cat.append("cat"),
+special_cat.append("special_cat"),
+dog.append("dog"),
+house.append("house"),
+
+do: run macro on each line qwyi"$3pi|
+-- select lines and type-- :norm @w
+cat.append("cat"),catcatcat|
+special_cat.append("special_cat"),special_catspecial_catspecial_cat|
+dog.append("dog"),dogdogdog|
+house.append("house"),househousehouse|
 
 
 ## Helps
@@ -252,6 +284,8 @@ As of my understanding macro and registers are the same thing.
 To paste from register just type `"ap`.
 :registers
 
+:put a          --> will paste the content of macro `a`
+"aY             --> yank line into register a
 
 # Mark
 
