@@ -272,8 +272,8 @@ Go to first non-blank charactor of mark 'a' by typing `'a`.
 $          --> jump to the end of the line
 b          --> jump to the start of PREVIOUS word
 e          --> jump to the end of NEXT word
-f          --> find next character
-F          --> find previous character
+f          --> find next character (use `;` to repeat movement)
+F          --> find previous character (use `,` to repeat in opposite direction)
 t          --> find next character and stop before it
 w          --> jump to the start of next word
 W          --> jump to the start of next word respecting only whitespaces
@@ -287,6 +287,7 @@ W          --> jump to the start of next word respecting only whitespaces
 
 # Operator
 
+B          --> block
 c          --> delete selected text and change mode to Insert
 C          --> delete until the end of a line and change mode to Insert
 d          --> delete the character
@@ -295,7 +296,8 @@ D          --> delete until the end of a line
 u          --> undo last command
 U          --> undo changes in the line
 Ctrl+r     --> redo the change
-p          --> paste content
+P          --> paste content before the cursor (or above if it is a line)
+p          --> paste content after the cursor (or below if it is a line)
 v          --> start visual mode
 V          --> start visual mode, selecting current line
 y          --> yank selected text
@@ -318,8 +320,11 @@ matching criteria '[', '"', 'p'. Also such operators and motions like viw, caw w
 even when the cursor is in the middle of a word. It is the same mechanism as cap.
 Yank is a exception.
 
+gi         --> puts you on the last insert
+gv         --> puts you on the last visual
 gt         --> switch between tabs
 gO         --> list all symbols in the current buffer
+g$         --> goes to the end of "wrap" line
 g~w        --> invert characters in a word
 gu$        --> change characters to lowecase to the end of line
 gUG        --> change characters to uppercase to the end of line a file
@@ -334,6 +339,7 @@ dt)        --> delete text until ) (without the ')')
 df)        --> delete text up to ) (with the ')')
 <ip        --> indent current paragraph
 va{        --> select around '{'
+va{V       --> select around '{' and expand to lines (useful for method)
 V%y        --> yank selected lines under the % jump
 gc%        --> [un]comment out section
 "ap        --> paste content of register 'a'
@@ -387,22 +393,32 @@ zb         --> move view down
 
 # Insert mode
 
+Ctrl+s           --> display hover (e.g. method documentation)
 Ctrl+p           --> autocomplete word based on the matching words in the backward direction
 Ctrl+n           --> autocomplete word based on the matching words in the forward direction
 Ctrl+y           --> select autocomplete text
 Ctrl+e           --> cancel autocomplete
 Esc              --> cancel autocomplete
 Ctrl+x Ctrl+l    --> autocomplete line based on the matching lines in the backward direction
+Ctrl+T           --> indent to the right
+Ctrl+D           --> indent to the left
 
 
 # Visual mode
 
+P          --> paste content and does NOT put replaced text in the unnamed `""` register
+p          --> paste content and does put replaced text in the unnamed `""` register
 =          --> auto indent code
 o          --> will jump your cursor up and down
 Ctrl+c     --> breaks visual mode, useful after vi[o
->          --> indent visually selected lines once
+>          --> indent visually selected lines once to the right
+<          --> indent visually selected lines once to the left
+u          --> change case to lower
+U          --> change case to upper
 ~          --> invert the case of visually selected characters
-
+V          --> expand visuallization to lines
+gq         --> wraps text, so words are not cut and everything is in new line
+gqa        --> wraps around paragraph
 
 # Multi cursor
 
