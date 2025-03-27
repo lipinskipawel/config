@@ -23,14 +23,13 @@ alias ....='cd ../../..'
 
 # Commands to run in interactive sessions can go here
 if status is-interactive
+  # add rust toolchain to path, universal, to the front by default
+  fish_add_path "$HOME/.cargo/bin"
+  fish_add_path "$HOME/.local/bin"
   switch (uname)
 	  case Linux
-		  # add rust toolchain to path, universal, to the front by default
-		  fish_add_path "$HOME/.cargo/bin"
-		  fish_add_path "$HOME/.local/bin"
 		  fish_add_path "/usr/local/go/bin/"
 	  case Darwin
-		  fish_add_path "$HOME/.local/bin"
 		  fish_add_path "/opt/homebrew/bin/"
 	  case '*'
 		  echo "Unknown system"
