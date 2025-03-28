@@ -11,8 +11,8 @@ switch (uname)
 		abbr -a j11 'sudo archlinux-java set java-11-openjdk'
 		abbr -a j17 'sudo archlinux-java set java-17-openjdk'
 	case Darwin
-		abbr -a j17 'set -gx JAVA_HOME="/usr/libexec/java_home -v 17"'
-		abbr -a j21 'set -gx JAVA_HOME="/usr/libexec/java_home -v 21"'
+		abbr -a j17 'set -gx JAVA_HOME (/usr/libexec/java_home -v 17)'
+		abbr -a j21 'set -gx JAVA_HOME (/usr/libexec/java_home -v 21)'
 	case '*'
 		echo "Unknown system"
 end
@@ -32,7 +32,6 @@ if status is-interactive
 	  case Darwin
 		  fish_add_path "$HOME/.local/bin"
 		  fish_add_path "/opt/homebrew/bin/"
-		  j21
 	  case '*'
 		  echo "Unknown system"
   end

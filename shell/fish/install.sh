@@ -9,6 +9,6 @@ rm $fish_conf_file
 rm -rf $fish_conf_d
 rm -rf $fish_functions
 
-ln -sr fish/config.fish $fish_conf_file
-ln -sr fish/conf.d $fish_conf_d
-ln -sr fish/functions $fish_functions
+ln -s $(pwd)/fish/config.fish $fish_conf_file
+ln -s $(pwd)/fish/conf.d $fish_conf_d
+ln -s $(pwd)/fish/functions $fish_functions
