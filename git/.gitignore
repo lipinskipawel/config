@@ -9,6 +9,13 @@ todo
 .vim
 
 
+################ Obsidian
+# Do save configurations
+#.obsidian
+# Do not save workspace.json file
+**/.obsidian/workspace.json
+
+
 ################# Build tools
 ### Gradle ###
 .gradle
