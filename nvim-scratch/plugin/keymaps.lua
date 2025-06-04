@@ -11,6 +11,46 @@ set("n", "A-k", "<cmd>cprev<CR>zz", { desc = "Go to PREV error on quickfix list"
 set("n", "<leader>co", ":copen<CR>", { desc = "Open quickfix" })
 set("n", "<leader>cc", ":cclose<CR>", { desc = "Use ESC to close quickfix" })
 
+
+-- replace every character in {text} with {replacement} on the current line
+local function replace_chars_in_line(text, replacement)
+    -- build a Lua‑pattern class, escaping any “magic” symbols in the list
+    local pattern  = "[" .. text:gsub("([%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1") .. "]"
+
+    -- unpack just unpacks elements from the table into local's
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0)) -- save cursor
+    local line     = vim.api.nvim_get_current_line()        -- grab current line
+    local newline  = line:gsub(pattern, replacement)        -- do the swap
+    vim.api.nvim_set_current_line(newline)                  -- write it back
+    vim.api.nvim_win_set_cursor(0, { row, col })            -- restore cursor
+end
+
+set("n", "<leader>~", function()
+    -- can also be done
+    -- set("n", "<leader>~", ":s/ą\\|á\\|à\\|ã\\|â\\|ä/a/g<CR>"
+    --     .. "|:s/ç/c/g<CR>"
+    --     , { desc = "Replace accents" })
+    replace_chars_in_line("ąáàãâä", "a")
+    replace_chars_in_line("ç", "c")
+    replace_chars_in_line("ęéèêë", "e")
+    replace_chars_in_line("íìîï", "i")
+    replace_chars_in_line("ł", "l")
+    replace_chars_in_line("óòõôö", "o")
+    replace_chars_in_line("úùûü", "u")
+    replace_chars_in_line("ź", "z")
+    replace_chars_in_line("ż", "z")
+
+    replace_chars_in_line("ÁÀÃÄ", "A")
+    replace_chars_in_line("Ç", "C")
+    replace_chars_in_line("ÉÈÊË", "E")
+    replace_chars_in_line("ÍÌÎÏ", "I")
+    replace_chars_in_line("Ł", "L")
+    replace_chars_in_line("ÓÒÕÖÔ", "O")
+    replace_chars_in_line("ÚÙÛÜ", "U")
+    replace_chars_in_line("Ź", "Z")
+    replace_chars_in_line("Ż", "Z")
+end, { desc = "Replace accents" })
+
 -- PR in neovim https://github.com/neovim/neovim/pull/28650/files
 -- :help lsp-quickstart
 -- default mappings https://neovim.io/doc/user/vim_diff.html#default-mappings

@@ -1,5 +1,9 @@
 Trick yourself to enjoy reading :)
 
+rg 'some' | nvim -
+grep -v .git --> to remove lines
+gf --> opens a file under the cursor
+
 # Commands
 
 :help vim.o                       --> help about options
@@ -18,6 +22,7 @@ Trick yourself to enjoy reading :)
 :e                                --> load the latest version
 :e!                               --> load the latest version even if you have unsaved changes
 :.!                               --> type `!!` in normal mode. executes shell command and insert output to buffer
+:%!                               --> execute given command %!sort
 :!mkdir lua                       --> execute mkdir lua
 :norm                             --> more powerfull find and replace, run macro on each line
 
