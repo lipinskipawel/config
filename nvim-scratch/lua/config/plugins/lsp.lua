@@ -26,7 +26,8 @@ return {
 
         local ensure_installed = {
             "lua_ls",
-            "gopls"
+            "gopls",
+            "clangd"
         }
         mason_tool_installer.setup { ensure_installed = ensure_installed }
 
@@ -34,6 +35,7 @@ return {
             capabilities = capabilities
         }
         lspconfig.gopls.setup({})
+        lspconfig.clangd.setup({})
 
         vim.api.nvim_create_autocmd('LspAttach', {
             callback = function(args)
