@@ -5,6 +5,8 @@ abbr -a t tmux
 abbr -a d docker
 abbr -a ga 'git commit --amend'
 abbr -a gc 'git checkout'
+abbr -a gpo 'git push origin -u "$(git rev-parse --abbrev-ref HEAD)"'
+
 switch (uname)
 	case Linux
 		abbr -a j8 'sudo archlinux-java set java-8-openjdk'
@@ -13,6 +15,7 @@ switch (uname)
 	case Darwin
 		abbr -a j17 'set -gx JAVA_HOME (/usr/libexec/java_home -v 17)'
 		abbr -a j21 'set -gx JAVA_HOME (/usr/libexec/java_home -v 21)'
+		abbr -a j25 'set -gx JAVA_HOME (/usr/libexec/java_home -v 25)'
 	case '*'
 		echo "Unknown system"
 end
@@ -31,6 +34,9 @@ if status is-interactive
 		  fish_add_path "/usr/local/go/bin/"
 	  case Darwin
 		  fish_add_path "/opt/homebrew/bin/"
+		  set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
+		  set -Ux DOCKER_HOST unix:///Users/$USER/.rd/docker.sock
+		  set -Ux TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE /var/run/docker.sock
 	  case '*'
 		  echo "Unknown system"
   end
