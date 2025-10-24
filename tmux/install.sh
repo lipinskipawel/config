@@ -6,11 +6,8 @@ tmux_config=~/.config/tmux
 
 function install_tmux() {
 	echo "Installing..."
-	ln -sf $(pwd)/theme.conf $tmux_config/theme.conf
-	ln -sf $(pwd)/tmux-sessionizer ~/.local/bin/
-	ln -sf $(pwd)/tmux-work-session ~/.local/bin/
-	ln -sf $(pwd)/tmux-kill-window ~/.local/bin/
-	ln -sf $(pwd)/.tmux.conf ~/.tmux.conf
+	ln -s $(pwd)/theme.conf $tmux_config/theme.conf
+	ln -s $(pwd)/tmux.conf ~/.tmux.conf
 }
 
 # https://bash.cyberciti.biz/guide/Here_documents
