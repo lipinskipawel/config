@@ -6,18 +6,19 @@ prefix+[    --> enter copy mode
 
 # Custom key binds
 
+The "bind" is just an alias for "bind-key".
+
 You can set key binds with and without prefix.
 To create bind without prefix use `-n` option.
 To create bind with prefix use '-r' option.
 
 ```.tmux.conf
 bind -n PageDown next-window
-bind-key PageUp previous-window
+bind PageUp previous-window
 
-bind-key -r f run-shell "tmux new-window tmux-sessionizer"
+bind -r f run-shell "tmux new-window tmux-sessionizer.sh"
 ```
 
-What is the difference between `bind` and `bind-key`?
 
 
 # send-keys
@@ -34,6 +35,6 @@ C-m means hit return
 https://www.seanh.cc/2020/12/28/binding-keys-in-tmux/
 https://www.youtube.com/watch?v=DzNmUNvnB04&t=21s
 
-bind-key and send-keys
+bind and send-keys
 - https://stackoverflow.com/questions/19313807/tmux-send-keys-syntax
 
