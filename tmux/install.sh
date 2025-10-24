@@ -9,6 +9,7 @@ function install_tmux() {
 	ln -sf $(pwd)/theme.conf $tmux_config/theme.conf
 	ln -sf $(pwd)/tmux-sessionizer ~/.local/bin/
 	ln -sf $(pwd)/tmux-work-session ~/.local/bin/
+	ln -sf $(pwd)/tmux-kill-window ~/.local/bin/
 	ln -sf $(pwd)/.tmux.conf ~/.tmux.conf
 }
 
