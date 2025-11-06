@@ -1,0 +1,14 @@
+# --- BASE ---
+GHORG_SCM_TYPE: gitlab
+GHORG_SCM_BASE_URL: https://gitlab.com
+GHORG_GITLAB_TOKEN:                  # leave empty to use env var
+GHORG_ABSOLUTE_PATH_TO_CLONE_TO: /Users/me/work-app
+
+GHORG_CLONE_TYPE: org                # "org" for groups, "user" for user repos
+GHORG_CLONE_PROTOCOL: https
+
+# --- GENERAL ---
+GHORG_PRESERVE_DIRECOTRY_STRUCTURE: true
+GHORG_SKIP_ARCHIVED: true
+GHORG_NO_CLEAN: true                 # keeps local untracked files
+GHORG_CONCURRENCY: 20
