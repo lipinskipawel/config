@@ -10,7 +10,8 @@ The "bind" is just an alias for "bind-key".
 
 You can set key binds with and without prefix.
 To create bind without prefix use `-n` option.
-To create bind with prefix use '-r' option.
+To create bind with repeated input use '-r' option. When hit leader+f and g, it will
+treat as leader+f, leader+g.
 
 ```.tmux.conf
 bind -n PageDown next-window
