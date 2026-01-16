@@ -3,6 +3,14 @@
 prefix+s    --> list sessions
 prefix+[    --> enter copy mode
 
+# prompt for tmux-commands
+
+swap source 3 with target 1
+ - swap-window -s 3 -t 1
+ - swap-window -t 0
+ - bind-key T swap-window -t 0
+
+ - split-window
 
 # Custom key binds
 

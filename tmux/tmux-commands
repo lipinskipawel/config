@@ -11,12 +11,13 @@
 
 # prefix [ --> enter copy tmux mode
 # prefix , --> rename current window
+# prefix : --> enter tmux-command prompt
+
 # prefix % --> new vertical pane
 # prefix " --> new pane
 
 # prefix d --> detached from session
 # prefix c --> create a new window
 # prefix w --> switch between sessions and windows
-# perfix : --> command prompt | type "split-window"
 # prefix ( --> cycle through the sessions
 # prefix ) --> cycle through the sessions backwards
