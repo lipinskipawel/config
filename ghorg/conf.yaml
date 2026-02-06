@@ -1,3 +1,6 @@
+# ghorg clone company --preserve-dir --skip-archived --fetch-all
+# ghorg clone company/projects --preserve-dir --skip-archived --fetch-all
+
 # --- BASE ---
 GHORG_SCM_TYPE: gitlab
 GHORG_SCM_BASE_URL: https://gitlab.com
@@ -10,5 +13,6 @@ GHORG_CLONE_PROTOCOL: https
 # --- GENERAL ---
 GHORG_PRESERVE_DIRECOTRY_STRUCTURE: true
 GHORG_SKIP_ARCHIVED: true
-GHORG_NO_CLEAN: true                 # keeps local untracked files
+GHORG_NO_CLEAN: false                # rest to master
+# GHORG_NO_CLEAN: true               # keeps local untracked files
 GHORG_CONCURRENCY: 20
