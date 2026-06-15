@@ -46,12 +46,19 @@ session_name=$(echo "$session_name" | tr . _)
 
 tmux_running=$(pgrep tmux)
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $session_name -c "$WORK_DIR"
-    exit 0
+	tmux new-session -ds "$session_name" -c "$WORK_DIR"
+	tmux new-window -t "$session_name" -c "$WORK_DIR"
+	tmux new-window -t "$session_name" -c "$WORK_DIR"
+	tmux select-window -t "$session_name:1"
+	tmux attach -t "$selected_name"
+	exit 0
 fi
 
+# when tmux is running
 if ! tmux has-session -t="$session_name" 2> /dev/null; then
-    tmux new-session -ds "$session_name" -c "$WORK_DIR"
+	tmux new-session -ds "$session_name" -c "$WORK_DIR"
+	tmux new-window -t "$session_name" -c "$WORK_DIR"
+	tmux new-window -t "$session_name" -c "$WORK_DIR"
 	tmux select-window -t "$session_name:1"
 fi
 

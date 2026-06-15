@@ -50,12 +50,18 @@ session_name=$(echo "$worktree_name" | tr . _)
 
 tmux_running=$(pgrep tmux)
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $session_name -c "$worktree_path"
-    exit 0
+	tmux new-session -ds "$session_name" -c $selected
+	tmux new-window -t "$session_name" -c $selected
+	tmux new-window -t "$session_name" -c $selected
+	tmux select-window -t "$session_name:1"
+	tmux attach -t $selected_name
+	exit 0
 fi
 
 if ! tmux has-session -t="$session_name" 2> /dev/null; then
-    tmux new-session -ds "$session_name" -c "$worktree_path"
+	tmux new-session -ds "$session_name" -c "$worktree_path"
+	tmux new-window -t "$session_name" -c "$worktree_path"
+	tmux new-window -t "$session_name" -c "$worktree_path"
 	tmux select-window -t "$session_name:1"
 fi
 
