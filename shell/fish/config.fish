@@ -3,9 +3,26 @@ abbr -a e nvim
 abbr -a g git
 abbr -a t tmux
 abbr -a d docker
+abbr -a p pnpm
+
+abbr -a ai 'claude --enable-auto-mode'
+
 abbr -a ga 'git commit --amend'
 abbr -a gc 'git checkout'
 abbr -a gpo 'git push origin -u "$(git rev-parse --abbrev-ref HEAD)"'
+abbr -a gad 'git add .; git commit --amend'
+abbr -a gadp 'git add .; git commit --amend; git push -f'
+
+abbr -a k 'kubectl'
+abbr -a ka 'kubectl apply -f'
+abbr -a m 'minikube'
+
+abbr -a awslogin 'set -e AWS_PROFILE; aws sso login --sso-session <company-name>'
+abbr -a awsdev 'set -e AWS_PROFILE; set -gx AWS_PROFILE dev'
+abbr -a awsprod 'set -e AWS_PROFILE; set -gx AWS_PROFILE production'
+abbr -a kdev 'set -e AWS_PROFILE; set -gx AWS_PROFILE dev; kubectx <company-name>-dev'
+
+abbr -a kretail 'aws eks update-kubeconfig --name kubernetes --alias <company-name>-dev --region us-east-1'
 
 switch (uname)
 	case Linux
