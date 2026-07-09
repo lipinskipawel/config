@@ -5,7 +5,7 @@ abbr -a t tmux
 abbr -a d docker
 abbr -a p pnpm
 
-abbr -a ai 'claude --enable-auto-mode'
+abbr -a ai 'claude --permission-mode auto'
 
 abbr -a ga 'git commit --amend'
 abbr -a gc 'git checkout'
@@ -51,6 +51,7 @@ if status is-interactive
 		  fish_add_path "/usr/local/go/bin/"
 	  case Darwin
 		  fish_add_path "/opt/homebrew/bin/"
+		  fish_add_path "$HOME/.rd/bin"
 		  set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
 		  set -Ux DOCKER_HOST unix:///Users/$USER/.rd/docker.sock
 		  set -Ux TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE /var/run/docker.sock

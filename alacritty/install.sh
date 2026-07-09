@@ -1,4 +1,5 @@
 #!/bin/bash
 
 cd ..
-ln -sr alacritty ~/.config/alacritty
+ln -s $(pwd)/alacritty ~/.config/alacritty
+
