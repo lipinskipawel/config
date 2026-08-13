@@ -1,0 +1,97 @@
+commit 8065352047e53d7545be9fedd0164257ee025fbe
+Author: Pawel Lipinski <lipinskijob@gmail.com>
+Date:   Wed Feb 11 16:45:00 2026 +0100
+
+    [tmux] Add worktree session
+
+diff --git a/scripts/tmux/install.sh b/scripts/tmux/install.sh
+index 9dc3826..c2577d5 100755
+--- a/scripts/tmux/install.sh
++++ b/scripts/tmux/install.sh
+@@ -3,3 +3,4 @@
+ ln -s $(pwd)/tmux-sessionizer.sh ~/.local/bin/
+ ln -s $(pwd)/tmux-work-session.sh ~/.local/bin/
+ ln -s $(pwd)/tmux-kill-window.sh ~/.local/bin/
++ln -s $(pwd)/tmux-worktree.sh ~/.local/bin/
+diff --git a/scripts/tmux/tmux-worktree.sh b/scripts/tmux/tmux-worktree.sh
+new file mode 100755
+index 0000000..e3e1f26
+--- /dev/null
++++ b/scripts/tmux/tmux-worktree.sh
+@@ -0,0 +1,62 @@
++#!/usr/bin/env bash
++
++WORK_DIRS=(
++	"$HOME/project"
++	"$HOME/work"
++)
++
++# Parse arguments
++# Usage: tmux-worktree [name] [directory]
++# [name]           - worktree name, used as: git worktree add ../[name]
++# [directory]      - base repository directory (selected via fzf if not provided)
++if [[ $# -lt 1 ]]; then
++	echo "Usage: tmus-worktree [name] [directory]"
++	exit 1
++fi
++
++worktree_name=$1
++
++if [[ $# -eq 2 ]]; then
++	# Both provided
++	selected_dir=$2
++else
++	# Only session name provided
++	selected_dir=$(find "${WORK_DIRS[@]}" -maxdepth 2 -type d | \
++		sed "s|^$HOME/||" | \
++		fzf --prompt="Select work directory: ")
++	# Add home path back
++	if [[ -n "$selected_dir" ]]; then
++		selected_dir="$HOME/$selected_dir"
++	fi
++fi
++
++# If no directory selected (user canceled fzf), exit
++if [[ -z "$selected_dir" ]]; then
++	exit 0
++fi
++
++# Create the worktree
++git -C "$selected_dir" worktree add "../$worktree_name"
++
++# Resolve the full path of the new worktree
++worktree_path=$(cd "$selected_dir/../$worktree_name" 2>/dev/null && pwd)
++if [[ -z "$worktree_path" ]]; then
++	echo "Failed to create worktree"
++	exit 1
++fi
++
++# Create a tmux session in the new worktree
++session_name=$(echo "$worktree_name" | tr . _)
++
++tmux_running=$(pgrep tmux)
++if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
++    tmux new-session -s $session_name -c "$worktree_path"
++    exit 0
++fi
++
++if ! tmux has-session -t="$session_name" 2> /dev/null; then
++    tmux new-session -ds "$session_name" -c "$worktree_path"
++	tmux select-window -t "$session_name:1"
++fi
++
++tmux switch-client -t "$session_name"
+diff --git a/tmux/tmux.conf b/tmux/tmux.conf
+index f556f45..7aa254e 100644
+--- a/tmux/tmux.conf
++++ b/tmux/tmux.conf
+@@ -43,6 +43,9 @@ bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection c
+ bind f run-shell "tmux new-window tmux-sessionizer.sh"
+ 
+ bind g command-prompt -p "Session name:" "run-shell 'tmux new-window \"tmux-work-session.sh \\\"%%\\\"\"'"
++bind e command-prompt -p "Worktree name:" "run-shell 'tmux new-window \"tmux-worktree.sh \\\"%%\\\"\"'"
++
++
+ bind N run-shell "tmux rename-window \"$(basename '#{pane_current_path}')\""
+ 
+ # create a new session by prefix H to my working place

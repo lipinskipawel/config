@@ -4,6 +4,17 @@ set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute/source the 
 set("n", "<leader>x", ":.lua<CR>", { desc = "Execute/source the current line" })
 set("v", "<leader>x", ":lua<CR>", { desc = "Execute/source the current selected lines" })
 
+-- set("n", "<leader><leader>", "<C-^>", { desc = "Go to previous buffer" })
+set("n", "<leader>s", "<Cmd>e #<CR>", { desc = "Go to previous buffer" })
+set("n", "<leader>T", "<Cmd>bot sf #<CR>", { desc = "Split between last two" })
+set("n", "<leader>w", ":update<CR>")
+set("n", "<leader>q", "<Cmd>:q!<CR>")
+set("n", "<leader>aw", "<Cmd>:wa!<CR>", { desc = "Write for all buffers" })
+set("n", "<leader>b", ":bdelete<CR>", { desc = "Closes current buffer" })
+
+-- maybe
+-- set({ 'n', 'v', 'x' }, ';', ':')
+-- set({ 'n', 'v', 'x' }, ':', ';')
 
 -- quickfix
 set("n", "A-j", "<cmd>cnext<CR>zz", { desc = "Go to NEXT error on quickfix list" })

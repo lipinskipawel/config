@@ -1,0 +1,324 @@
+commit b2098f4a2a0287c3eb029aea3fa6708ebdac5269
+Author: Pawel Lipinski <lipinskijob@gmail.com>
+Date:   Wed Feb 11 16:45:00 2026 +0100
+
+    [tmux] Add worktree session
+
+diff --git a/nvim-scratch/after/plugin/load_test_lsp.lua b/nvim-scratch/after/plugin/load_test_lsp.lua
+new file mode 100644
+index 0000000..c78ca8a
+--- /dev/null
++++ b/nvim-scratch/after/plugin/load_test_lsp.lua
+@@ -0,0 +1,19 @@
++local client = vim.lsp.start_client {
++    name = "educationalsp",
++    cmd = { "/home/pawel/project/lipinskipawel/educationalsp/main" },
++    on_attach = function()
++        vim.print("hello from on_attach")
++    end
++}
++
++if not client then
++    vim.notify "hey, you didn't do the client thing good"
++    return
++end
++
++vim.api.nvim_create_autocmd("FileType", {
++    pattern = "markdown",
++    callback = function()
++        vim.lsp.buf_attach_client(0, client)
++    end,
++})
+diff --git a/nvim-scratch/lua/config/plugins/telescope.lua b/nvim-scratch/lua/config/plugins/telescope.lua
+index 40a2195..0d02824 100644
+--- a/nvim-scratch/lua/config/plugins/telescope.lua
++++ b/nvim-scratch/lua/config/plugins/telescope.lua
+@@ -21,11 +21,19 @@ return {
+ 
+         local builtin = require('telescope.builtin')
+ 
+-        vim.keymap.set("n", "<leader>fh", builtin.help_tags)
+-
+         vim.keymap.set("n", "<leader>fd", builtin.find_files)
+         vim.keymap.set("n", "<leader>fg", builtin.git_files)
+         vim.keymap.set("n", "<leader>fs", builtin.live_grep)
++        vim.keymap.set("n", "<leader>fb", builtin.buffers)
++        vim.keymap.set("n", "<leader>ff", builtin.grep_string, { desc = "Find word" })
++        vim.keymap.set("n", "<leader>fm", builtin.man_pages, { desc = "search man page" })
++
++        vim.keymap.set({ "n" }, "<leader>ush", builtin.help_tags, { desc = "Vim help tags" }) -- <leader>fh
++        vim.keymap.set({ "n" }, "<leader>ust", builtin.builtin, { desc = "Telescope builtins" })
++        vim.keymap.set({ "n" }, "<leader>usd", builtin.registers, { desc = "Find in register" })
++        -- vim.keymap.set({ "n" }, "<leader>uso", builtin.oldfiles, { desc = "" })
++        -- vim.keymap.set({ "n" }, "<leader>usr", builtin.lsp_references, { desc = "" })
++        -- vim.keymap.set({ "n" }, "<leader>usc", builtin.git_bcommits, { desc = "" })
+ 
+         vim.keymap.set("n", "<leader>en", function()
+             local opts = require('telescope.themes').get_ivy({
+diff --git a/nvim-scratch/lua/config/telescope/multigrep.lua b/nvim-scratch/lua/config/telescope/multigrep.lua
+index d3e825a..f050e7c 100644
+--- a/nvim-scratch/lua/config/telescope/multigrep.lua
++++ b/nvim-scratch/lua/config/telescope/multigrep.lua
+@@ -47,7 +47,7 @@ local live_multigrep = function(opts)
+ end
+ 
+ M.setup = function()
+-    vim.keymap.set("n", "<leader>ff", live_multigrep)
++    vim.keymap.set("n", "<leader>pp", live_multigrep)
+ end
+ 
+ return M
+diff --git a/nvim-scratch/plugin/keymaps.lua b/nvim-scratch/plugin/keymaps.lua
+index 355faf0..89b2e51 100644
+--- a/nvim-scratch/plugin/keymaps.lua
++++ b/nvim-scratch/plugin/keymaps.lua
+@@ -4,6 +4,17 @@ set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute/source the
+ set("n", "<leader>x", ":.lua<CR>", { desc = "Execute/source the current line" })
+ set("v", "<leader>x", ":lua<CR>", { desc = "Execute/source the current selected lines" })
+ 
++-- set("n", "<leader><leader>", "<C-^>", { desc = "Go to previous buffer" })
++set("n", "<leader>s", "<Cmd>e #<CR>", { desc = "Go to previous buffer" })
++set("n", "<leader>T", "<Cmd>bot sf #<CR>", { desc = "Split between last two" })
++set("n", "<leader>w", ":update<CR>")
++set("n", "<leader>q", "<Cmd>:q!<CR>")
++set("n", "<leader>aw", "<Cmd>:wa!<CR>", { desc = "Write for all buffers" })
++set("n", "<leader>b", ":bdelete<CR>", { desc = "Closes current buffer" })
++
++-- maybe
++-- set({ 'n', 'v', 'x' }, ';', ':')
++-- set({ 'n', 'v', 'x' }, ':', ';')
+ 
+ -- quickfix
+ set("n", "A-j", "<cmd>cnext<CR>zz", { desc = "Go to NEXT error on quickfix list" })
+@@ -12,45 +23,6 @@ set("n", "<leader>co", ":copen<CR>", { desc = "Open quickfix" })
+ set("n", "<leader>cc", ":cclose<CR>", { desc = "Use ESC to close quickfix" })
+ 
+ 
+--- replace every character in {text} with {replacement} on the current line
+-local function replace_chars_in_line(text, replacement)
+-    -- build a Lua‑pattern class, escaping any “magic” symbols in the list
+-    local pattern  = "[" .. text:gsub("([%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1") .. "]"
+-
+-    -- unpack just unpacks elements from the table into local's
+-    local row, col = unpack(vim.api.nvim_win_get_cursor(0)) -- save cursor
+-    local line     = vim.api.nvim_get_current_line()        -- grab current line
+-    local newline  = line:gsub(pattern, replacement)        -- do the swap
+-    vim.api.nvim_set_current_line(newline)                  -- write it back
+-    vim.api.nvim_win_set_cursor(0, { row, col })            -- restore cursor
+-end
+-
+-set("n", "<leader>~", function()
+-    -- can also be done
+-    -- set("n", "<leader>~", ":s/ą\\|á\\|à\\|ã\\|â\\|ä/a/g<CR>"
+-    --     .. "|:s/ç/c/g<CR>"
+-    --     , { desc = "Replace accents" })
+-    replace_chars_in_line("ąáàãâä", "a")
+-    replace_chars_in_line("ç", "c")
+-    replace_chars_in_line("ęéèêë", "e")
+-    replace_chars_in_line("íìîï", "i")
+-    replace_chars_in_line("ł", "l")
+-    replace_chars_in_line("óòõôö", "o")
+-    replace_chars_in_line("úùûü", "u")
+-    replace_chars_in_line("ź", "z")
+-    replace_chars_in_line("ż", "z")
+-
+-    replace_chars_in_line("ÁÀÃÄ", "A")
+-    replace_chars_in_line("Ç", "C")
+-    replace_chars_in_line("ÉÈÊË", "E")
+-    replace_chars_in_line("ÍÌÎÏ", "I")
+-    replace_chars_in_line("Ł", "L")
+-    replace_chars_in_line("ÓÒÕÖÔ", "O")
+-    replace_chars_in_line("ÚÙÛÜ", "U")
+-    replace_chars_in_line("Ź", "Z")
+-    replace_chars_in_line("Ż", "Z")
+-end, { desc = "Replace accents" })
+-
+ -- PR in neovim https://github.com/neovim/neovim/pull/28650/files
+ -- :help lsp-quickstart
+ -- default mappings https://neovim.io/doc/user/vim_diff.html#default-mappings
+@@ -78,12 +50,6 @@ set('n', '<C-w>o', function() vim.lsp.buf.workspace_symbol() end, { desc = "Quer
+ 
+ set('t', '<esc><esc>', "<C-\\><C-n>", { desc = "Use double-ESC to switch to normal mode in terminal" })
+ 
+-set("n", "<leader><leader>", "<C-^>", { desc = "Go to previous buffer" })
+-set("n", "<leader>w", ":w!<CR>")
+-set("n", "<leader>q", ":q!<CR>")
+-set("n", "<leader>aw", ":wa!<CR>", { desc = "Write for all buffers" })
+-set("n", "<leader>b", ":bdelete<CR>", { desc = "Closes current buffer" })
+-
+ 
+ set("n", "J", "mzJ`z")
+ set("n", "<C-d>", "<C-d>zz", { desc = "Keep screen in the middle while moving" })
+@@ -117,6 +83,45 @@ set("x", "K", ":move '<-2<CR>gv-gv", { desc = "Move selected text up" })
+ 
+ vim.keymap.set("n", "<leader>,", ":set invlist<CR>", { desc = "Show/hide hidden characters" })
+ 
++-- replace every character in {text} with {replacement} on the current line
++local function replace_chars_in_line(text, replacement)
++    -- build a Lua‑pattern class, escaping any “magic” symbols in the list
++    local pattern  = "[" .. text:gsub("([%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1") .. "]"
++
++    -- unpack just unpacks elements from the table into local's
++    local row, col = unpack(vim.api.nvim_win_get_cursor(0)) -- save cursor
++    local line     = vim.api.nvim_get_current_line()        -- grab current line
++    local newline  = line:gsub(pattern, replacement)        -- do the swap
++    vim.api.nvim_set_current_line(newline)                  -- write it back
++    vim.api.nvim_win_set_cursor(0, { row, col })            -- restore cursor
++end
++
++set("n", "<leader>~", function()
++    -- can also be done
++    -- set("n", "<leader>~", ":s/ą\\|á\\|à\\|ã\\|â\\|ä/a/g<CR>"
++    --     .. "|:s/ç/c/g<CR>"
++    --     , { desc = "Replace accents" })
++    replace_chars_in_line("ąáàãâä", "a")
++    replace_chars_in_line("ç", "c")
++    replace_chars_in_line("ęéèêë", "e")
++    replace_chars_in_line("íìîï", "i")
++    replace_chars_in_line("ł", "l")
++    replace_chars_in_line("óòõôö", "o")
++    replace_chars_in_line("úùûü", "u")
++    replace_chars_in_line("ź", "z")
++    replace_chars_in_line("ż", "z")
++
++    replace_chars_in_line("ÁÀÃÄ", "A")
++    replace_chars_in_line("Ç", "C")
++    replace_chars_in_line("ÉÈÊË", "E")
++    replace_chars_in_line("ÍÌÎÏ", "I")
++    replace_chars_in_line("Ł", "L")
++    replace_chars_in_line("ÓÒÕÖÔ", "O")
++    replace_chars_in_line("ÚÙÛÜ", "U")
++    replace_chars_in_line("Ź", "Z")
++    replace_chars_in_line("Ż", "Z")
++end, { desc = "Replace accents" })
++
+ vim.keymap.set("n", "<Up>", "<Nop>", { desc = "No arrows" })
+ vim.keymap.set("n", "<Down>", "<Nop>", { desc = "No arrows" })
+ vim.keymap.set("n", "<Left>", "<Nop>", { desc = "No arrows" })
+diff --git a/scripts/tmux/install.sh b/scripts/tmux/install.sh
+index 9dc3826..c2577d5 100755
+--- a/scripts/tmux/install.sh
++++ b/scripts/tmux/install.sh
+@@ -3,3 +3,4 @@
+ ln -s $(pwd)/tmux-sessionizer.sh ~/.local/bin/
+ ln -s $(pwd)/tmux-work-session.sh ~/.local/bin/
+ ln -s $(pwd)/tmux-kill-window.sh ~/.local/bin/
++ln -s $(pwd)/tmux-worktree.sh ~/.local/bin/
+diff --git a/scripts/tmux/tmux-worktree.sh b/scripts/tmux/tmux-worktree.sh
+new file mode 100755
+index 0000000..e3e1f26
+--- /dev/null
++++ b/scripts/tmux/tmux-worktree.sh
+@@ -0,0 +1,62 @@
++#!/usr/bin/env bash
++
++WORK_DIRS=(
++	"$HOME/project"
++	"$HOME/work"
++)
++
++# Parse arguments
++# Usage: tmux-worktree [name] [directory]
++# [name]           - worktree name, used as: git worktree add ../[name]
++# [directory]      - base repository directory (selected via fzf if not provided)
++if [[ $# -lt 1 ]]; then
++	echo "Usage: tmus-worktree [name] [directory]"
++	exit 1
++fi
++
++worktree_name=$1
++
++if [[ $# -eq 2 ]]; then
++	# Both provided
++	selected_dir=$2
++else
++	# Only session name provided
++	selected_dir=$(find "${WORK_DIRS[@]}" -maxdepth 2 -type d | \
++		sed "s|^$HOME/||" | \
++		fzf --prompt="Select work directory: ")
++	# Add home path back
++	if [[ -n "$selected_dir" ]]; then
++		selected_dir="$HOME/$selected_dir"
++	fi
++fi
++
++# If no directory selected (user canceled fzf), exit
++if [[ -z "$selected_dir" ]]; then
++	exit 0
++fi
++
++# Create the worktree
++git -C "$selected_dir" worktree add "../$worktree_name"
++
++# Resolve the full path of the new worktree
++worktree_path=$(cd "$selected_dir/../$worktree_name" 2>/dev/null && pwd)
++if [[ -z "$worktree_path" ]]; then
++	echo "Failed to create worktree"
++	exit 1
++fi
++
++# Create a tmux session in the new worktree
++session_name=$(echo "$worktree_name" | tr . _)
++
++tmux_running=$(pgrep tmux)
++if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
++    tmux new-session -s $session_name -c "$worktree_path"
++    exit 0
++fi
++
++if ! tmux has-session -t="$session_name" 2> /dev/null; then
++    tmux new-session -ds "$session_name" -c "$worktree_path"
++	tmux select-window -t "$session_name:1"
++fi
++
++tmux switch-client -t "$session_name"
+diff --git a/shell/fish/config.fish b/shell/fish/config.fish
+index 1310292..cfa5f2d 100644
+--- a/shell/fish/config.fish
++++ b/shell/fish/config.fish
+@@ -5,8 +5,13 @@ abbr -a t tmux
+ abbr -a d docker
+ abbr -a ga 'git commit --amend'
+ abbr -a gc 'git checkout'
++abbr -a gad 'git add .; git commit --amend'
+ abbr -a gpo 'git push origin -u "$(git rev-parse --abbrev-ref HEAD)"'
+ 
++abbr -a k 'kubectl'
++abbr -a ka 'kubectl apply -f'
++abbr -a m 'minikube'
++
+ switch (uname)
+ 	case Linux
+ 		abbr -a j8 'sudo archlinux-java set java-8-openjdk'
+diff --git a/shell/fish/functions/antlr.fish b/shell/fish/functions/antlr.fish
+new file mode 100644
+index 0000000..c8a0d2e
+--- /dev/null
++++ b/shell/fish/functions/antlr.fish
+@@ -0,0 +1,3 @@
++function antlr
++  docker run -it -u '(id -u {$USER})':'(id -g {$USER})' -v '(pwd)':/work antlr/antlr4 $argv
++end
+diff --git a/shell/fish/functions/open.fish b/shell/fish/functions/open.fish
+new file mode 100644
+index 0000000..dc25066
+--- /dev/null
++++ b/shell/fish/functions/open.fish
+@@ -0,0 +1,3 @@
++function open
++  xdg-open $argv[1]
++end
+diff --git a/tmux/tmux.conf b/tmux/tmux.conf
+index f556f45..7aa254e 100644
+--- a/tmux/tmux.conf
++++ b/tmux/tmux.conf
+@@ -43,6 +43,9 @@ bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection c
+ bind f run-shell "tmux new-window tmux-sessionizer.sh"
+ 
+ bind g command-prompt -p "Session name:" "run-shell 'tmux new-window \"tmux-work-session.sh \\\"%%\\\"\"'"
++bind e command-prompt -p "Worktree name:" "run-shell 'tmux new-window \"tmux-worktree.sh \\\"%%\\\"\"'"
++
++
+ bind N run-shell "tmux rename-window \"$(basename '#{pane_current_path}')\""
+ 
+ # create a new session by prefix H to my working place
