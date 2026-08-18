@@ -1,0 +1,20 @@
+-- local client = vim.lsp.start {
+--     name = "educationalsp",
+--     cmd = { "/home/pawel/project/lipinskipawel/educationalsp/main" },
+--     on_attach = function()
+--         vim.print("hello from on_attach")
+--     end
+-- }
+--
+-- if not client then
+--     vim.notify "hey, you didn't do the client thing good"
+--     return
+-- end
+--
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "markdown",
+--     callback = function()
+--         vim.print("FileType autocmd fired for markdown!")
+--         vim.lsp.buf_attach_client(0, client)
+--     end,
+-- })

@@ -1,6 +1,13 @@
 local opt = vim.opt
 
-opt.guicursor = ""
+-- Define the custom highlight group, called 'nCursor'
+vim.api.nvim_set_hl(0, "nCursor", { fg = "White", bg = "White", sp = "White" })
+-- vim.cmd("highlight Cursor guifg=green guibg=green")
+
+-- use the custom highlight group, to avoid dynamic color of cursor
+-- set by default by the Neovim
+opt.guicursor = "a:block-nCursor"
+opt.termguicolors = true
 opt.clipboard = "unnamedplus" -- allow access to the system clipboard
 
 --- visuals ---
