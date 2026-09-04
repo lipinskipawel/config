@@ -31,18 +31,24 @@ return {
         }
         mason_tool_installer.setup { ensure_installed = ensure_installed }
 
-        lspconfig.lua_ls.setup {
-            capabilities = capabilities
-        }
-        lspconfig.gopls.setup({})
-        lspconfig.clangd.setup({})
+        -- server-specific overrides live in ./servers/<name>.lua
+        local servers = { "lua_ls", "gopls", "clangd" }
+
+        for _, name in ipairs(servers) do
+            local ok, server_opts = pcall(require, "config.plugins.servers." .. name)
+            if not ok then
+                server_opts = {}
+            end
+            server_opts.capabilities = capabilities
+            lspconfig[name].setup(server_opts)
+        end
 
         vim.api.nvim_create_autocmd('LspAttach', {
             callback = function(args)
                 local client = vim.lsp.get_client_by_id(args.data.client_id)
                 if not client then return end
 
-                if client.supports_method('text/Document/formatting') then
+                if client:supports_method('textDocument/formatting') then
                     vim.api.nvim_create_autocmd('BufWritePre', {
                         buffer = args.buf,
                         callback = function()
