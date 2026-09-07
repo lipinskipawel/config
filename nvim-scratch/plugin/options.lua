@@ -30,6 +30,7 @@ opt.ignorecase = true
 
 opt.hlsearch = false
 opt.incsearch = true
+-- opt.smartcase = true
 
 --- windows ---
 opt.splitbelow = true

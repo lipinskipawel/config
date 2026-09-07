@@ -1,4 +1,6 @@
 local set = vim.keymap.set
+-- local opts = { noremap = true, silent = true }
+
 
 set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute/source the current file" })
 set("n", "<leader>x", ":.lua<CR>", { desc = "Execute/source the current line" })
@@ -20,7 +22,8 @@ set("n", "<leader>b", ":bdelete<CR>", { desc = "Closes current buffer" })
 set("n", "A-j", "<cmd>cnext<CR>zz", { desc = "Go to NEXT error on quickfix list" })
 set("n", "A-k", "<cmd>cprev<CR>zz", { desc = "Go to PREV error on quickfix list" })
 set("n", "<leader>co", ":copen<CR>", { desc = "Open quickfix" })
-set("n", "<leader>cc", ":cclose<CR>", { desc = "Use ESC to close quickfix" })
+set("n", "<leader>cc", ":cclose<CR>", { desc = "Use leader+cc to close quickfix" })
+set("n", "<Esc>", ":cclose<CR>", { desc = "Use ESC to close quickfix" })
 
 
 -- replace every character in {text} with {replacement} on the current line
@@ -88,6 +91,9 @@ set('n', '<C-w>o', function() vim.lsp.buf.workspace_symbol() end, { desc = "Quer
 -- set({ "n", "v" }, "<leader>d", '"_d') -- deleting void register
 
 set('t', '<esc><esc>', "<C-\\><C-n>", { desc = "Use double-ESC to switch to normal mode in terminal" })
+-- does not work
+-- set('n', 'L', "<Nop>", { desc = "Go to left" })
+-- set('n', 'L', "$", { desc = "Go to left" })
 
 set("n", "<leader><leader>", "<C-^>", { desc = "Go to previous buffer" })
 set("n", "<leader>w", ":w!<CR>")
@@ -126,6 +132,16 @@ set("x", "K", ":move '<-2<CR>gv-gv", { desc = "Move selected text up" })
 --   "M" -- is Meta key (which is usually Alt)
 --   "A" -- is Atl
 
+-- replace word that the cursor is on
+vim.keymap.set(
+    "n",
+    "<leader>rs",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+)
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make file executabe", silent = true })
+vim.keymap.set("n", "so", function()
+    vim.cmd("so")
+end)
 vim.keymap.set("n", "<leader>,", ":set invlist<CR>", { desc = "Show/hide hidden characters" })
 
 vim.keymap.set("n", "<Up>", "<Nop>", { desc = "No arrows" })
