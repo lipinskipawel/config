@@ -54,16 +54,29 @@ rust() {
 }
 
 gradle() {
-  echo "Install gradle"
-  curl --proto '=https' -tlsv1.2 -fsSL "https://services.gradle.org/distributions/gradle-7.4.2-all.zip" \
-    --output gradle-7.4.2-all.zip
+  local version="${1:-9.7.1}"
 
-  unzip gradle-7.4.2-all.zip
-  mv gradle-7.4.2 /home/pawel/.tools
+  if [[ -z "$version" ]]; then
+      echo "Usage: gradle <version>"
+      return 1
+  fi
 
-  rm -rf gradle-7.4.2-all.zip
-  chmod +x /home/pawel/.tools/gradle-7.4.2/bin/gradle
-  ln -s /home/pawel/.tools/gradle-7.4.2/bin/gradle /home/pawel/.local/bin/gradle
+  echo "Install gradle $version"
+
+  local archive="gradle-${version}-all.zip"
+  local dir="gradle-${version}"
+  local install_dir="/home/pawel/.tools/${dir}"
+
+  curl --proto '=https' --tlsv1.2 -fsSL \
+    "https://services.gradle.org/distributions/${archive}" \
+    --output "$archive"
+
+  unzip "$archive"
+  mv "$dir" /home/pawel/.tools
+
+  rm -f "$archive"
+  chmod +x "${install_dir}/bin/gradle"
+  ln -sfn "${install_dir}/bin/gradle" /home/pawel/.local/bin/gradle
 }
 
 idea() {
@@ -82,6 +95,6 @@ idea() {
 docker
 java
 rust
-gradle
+gradle 9.7.1
 idea
 
