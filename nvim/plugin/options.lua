@@ -43,6 +43,7 @@ opt.backup = false
 opt.writebackup = false
 
 --- tabs, spaces ---
+-- in insert mode press -> Ctrl+v Tab -- to insert tab, not space
 opt.expandtab = true -- I want spaces, not tab
 opt.tabstop = 4      -- how many spaces displays for a tab
 opt.shiftwidth = 4   -- number of spaces inserted for each indentation
